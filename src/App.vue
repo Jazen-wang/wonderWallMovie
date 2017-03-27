@@ -1,14 +1,10 @@
-<template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
-  </div>
+<template lang="jade">
+  #app
+    router-view
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+
 </script>
 
 <style>
@@ -18,6 +14,31 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+html, body, #app {
+  width: 100%;
+  height: 100%;
+}
+.fade-enter {
+  animation: fade-in .5s;
+}
+.fade-leave {
+  animation: fade-out .5s;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
+  }
 }
 </style>
