@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import main from '@/views/main'
-import IndexPage from '@/views/index-page'
-import test from '@/views/test'
+// 正在热映模块
+// import onshowing from '@/components/onshowing'
+// 即将上映模块
+import upcoming from '@/components/upcoming'
+import index from '@/components/index-page'
 
 Vue.use(Router)
 // 使用html5模式
@@ -11,12 +13,13 @@ var router = new Router({
   routes: [
     {
       path: '/',
-      name: 'main',
-      component: main,
-      children: [
-        { path: 'index', component: IndexPage, name: 'index-page' },
-        { path: 'test', component: test, name: 'test-page' }
-      ]
+      name: 'onshowing',
+      component: index
+    },
+    {
+      path: '/upcoming',
+      name: 'upcoming',
+      component: upcoming
     }
   ]
 })

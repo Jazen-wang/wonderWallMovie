@@ -17,7 +17,7 @@ export default {
   }
 }
 </script>
-
+<!--
 <style lang="sass">
 #main-app
 
@@ -33,4 +33,4 @@ export default {
   padding: 0px 30px
   cursor: pointer
 
-</style>
+</style> -->
