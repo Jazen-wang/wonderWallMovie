@@ -5,6 +5,8 @@
 ## 前端开发
 
 ``` bash
+cd app-vue
+
 # 安装依赖
 npm install
 
@@ -18,6 +20,21 @@ npm run build
 npm run build --report
 ```
 
+## 服务端开发
+需要安装配置 [Maven](http://maven.apache.org/)
+``` bash
+# 进入目录
+cd app-java
+
+# 运行
+mvn spring-boot:run
+```
+
 ## 团队成员
 sysu - 王镇佳
-
+sysu - 林毓
+sysu - 孔维安
+sysu - 吴其锋
+sysu - 叶海涛
+sysu - 白吟霜
+sysu - 刘阳
