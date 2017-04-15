@@ -16,7 +16,8 @@
     "vue": "^2.2.2",
     "vue-carousel-3d": "^0.1.8",
     "vue-router": "^2.2.0",
-    "vue-style-loader": "^2.0.4"
+    "vue-style-loader": "^2.0.4",
+    "vuex": "^2.3.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

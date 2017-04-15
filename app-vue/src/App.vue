@@ -11,12 +11,10 @@
 </template>
 
 <script>
+import Dheader from './header'
 export default {
-  // import header from './header'
   components: {
-    'Dheader': (resolve) => {
-      require(['./header'], resolve)
-    }
+    Dheader
   }
 }
 </script>

@@ -5,6 +5,8 @@ import App from './App'
 import router from './router/index.js'
 import Carousel3d from 'vue-carousel-3d'
 import ElementUi from 'element-ui'
+// import store from './store'
+
 require.ensure([], function () {
   require('element-ui/lib/theme-default/index.css')
 })
@@ -17,6 +19,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
