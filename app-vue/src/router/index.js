@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// 正在热映模块
-// import onshowing from '@/components/onshowing'
-// 即将上映模块
-import upcoming from '@/components/upcoming'
+// 首页
 import index from '@/components/index-page'
+// 电影页
+import movies from '@/components/movies'
 
 Vue.use(Router)
 // 使用html5模式
@@ -13,13 +12,13 @@ var router = new Router({
   routes: [
     {
       path: '/',
-      name: 'onshowing',
+      name: 'index',
       component: index
     },
     {
-      path: '/upcoming',
-      name: 'upcoming',
-      component: upcoming
+      path: '/movies',
+      name: 'movies',
+      component: movies
     }
   ]
 })
