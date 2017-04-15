@@ -21,8 +21,14 @@ npm run build --report
 ```
 
 ## 服务端开发
+需要安装配置 [Maven](http://maven.apache.org/)
+``` bash
+# 进入目录
 cd app-java
-... // fullfill by 林毓
+
+# 运行
+mvn spring-boot:run
+```
 
 ## 团队成员
 sysu - 王镇佳
