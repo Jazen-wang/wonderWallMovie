@@ -1,4 +1,4 @@
-package sysu;
+package sysu.persistence.models;
 
 import javax.persistence.*;
 import java.io.Serializable;

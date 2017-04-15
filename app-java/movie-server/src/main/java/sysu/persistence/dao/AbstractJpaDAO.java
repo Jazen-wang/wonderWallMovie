@@ -1,4 +1,4 @@
-package sysu;
+package sysu.persistence.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
