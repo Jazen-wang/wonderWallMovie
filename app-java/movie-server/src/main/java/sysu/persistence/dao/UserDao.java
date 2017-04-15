@@ -1,4 +1,6 @@
-package sysu;
+package sysu.persistence.dao;
+
+import sysu.persistence.models.User;
 
 import java.util.List;
 

@@ -1,4 +1,6 @@
-package sysu;
+package sysu.persistence.dao;
+
+import sysu.persistence.models.User;
 
 /**
  * Created by shower on 17-4-14.
