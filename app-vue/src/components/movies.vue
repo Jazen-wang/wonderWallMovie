@@ -8,7 +8,7 @@
     <div class="movie-list">
       <el-row>
         <el-col v-for="item in movies">
-          <div class="item">
+          <div class="item" @click="toDetail(item)">
             <div class="poster"></div>
             <div class="linear-cover">
               <div class="info">
@@ -16,7 +16,7 @@
                 <div class="title"> {{ item.title }} </div>
               </div>
             </div>
-            <button type="button" name="buy-btn" class="buy-btn">购买</button>
+            <button type="button" name="buy-btn" class="buy-btn" @click="toBuy(item, $event)">购买</button>
           </div>
         </el-col>
       </el-row>
@@ -27,13 +27,13 @@
 <script>
 
 var movies = [
-  { title: "速度与激情8", score: 9.5 },
-  { title: "2", score: 8.0 },
-  { title: "3", score: 5.5 },
-  { title: "4", score: 10.0 },
-  { title: "5", score: 8.4 },
-  { title: "6", score: 6.2 },
-  { title: "7", score: 2.0 },
+  { title: "速度与激情8", score: 9.5, id:1 },
+  { title: "2", score: 8.0, id:2 },
+  { title: "3", score: 5.5, id:3 },
+  { title: "4", score: 10.0, id:4 },
+  { title: "5", score: 8.4, id:5 },
+  { title: "6", score: 6.2, id:6 },
+  { title: "7", score: 2.0, id:7 },
 ]
 
 export default {
@@ -67,6 +67,14 @@ export default {
     // 对电影的评分进行排序（降序）
     compareScore: function(a, b) {
       return a.score > b.score;
+    },
+    // 跳转到电影详情
+    toDetail: function(movie) {
+      this.$router.push('/movies/' + movie.id);
+    },
+    toBuy: function(movie, event) {
+      console.log('buy');
+      event.stopPropagation();
     }
   }
 
@@ -99,9 +107,10 @@ $score-color: #ffb400
         transition: all 0.2s
         &:hover
           box-shadow: 0 0 8px #fff, 0 5px 13px rgba(0,0,0,.07)
+          // box-shadow: 1px 1px 1px #eee
         .poster
           width: 100%
-          height: 220px
+          height: 250px
           background-image: url('../assets/test.jpg')
           background-position: center
           background-size: cover
