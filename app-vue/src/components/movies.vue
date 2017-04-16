@@ -6,11 +6,18 @@
       <el-radio :label="3">按评价排序</el-radio>
     </el-radio-group>
     <div class="movie-list">
-      <el-row :gutter="20">
-        <el-col :span="4" class="item" v-for="item in movies">
-          <div class="poster"></div>
-          <a class="title"> {{ item.title }} </a>
-          <p class="score"> {{ item.score }} </p>
+      <el-row>
+        <el-col v-for="item in movies">
+          <div class="item">
+            <div class="poster"></div>
+            <div class="linear-cover">
+              <div class="info">
+                <i class="score"> {{ item.score }} </i>
+                <div class="title"> {{ item.title }} </div>
+              </div>
+            </div>
+            <button type="button" name="buy-btn" class="buy-btn">购买</button>
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -20,7 +27,7 @@
 <script>
 
 var movies = [
-  { title: "1", score: 9.5 },
+  { title: "速度与激情8", score: 9.5 },
   { title: "2", score: 8.0 },
   { title: "3", score: 5.5 },
   { title: "4", score: 10.0 },
@@ -70,24 +77,68 @@ export default {
 $score-color: #ffb400
 
 #movies-view
-  width: 950px
+  width: 1000px
   margin-left: auto
   margin-right: auto
   .el-radio-group
+    margin-left: 20px
     margin-top: 40px
     display: block
     text-align: left
   .movie-list
-    margin-top: 10px
-    .item
-      .poster
-        width: 100%
-        height: 191px
-        background-image: url('../assets/logo.png')
-        background-position: center
-        background-size: contain
-        background-repeat: no-repeat
-      .title
-      .score
-        color: $score-color
+    .el-col
+      margin-top: 15px
+      width: 200px
+      padding: 0 10px
+      .item
+        position: relative
+        cursor: pointer
+        text-align: left
+        border: 1px solid #efefef
+        border-radius: 2px
+        transition: all 0.2s
+        &:hover
+          box-shadow: 0 0 8px #fff, 0 5px 13px rgba(0,0,0,.07)
+        .poster
+          width: 100%
+          height: 220px
+          background-image: url('../assets/test.jpg')
+          background-position: center
+          background-size: cover
+          background-repeat: no-repeat
+        .linear-cover
+          position: absolute
+          margin-top: -40px
+          width: 100%
+          height: 40px
+          background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.6))
+          .info
+            padding: 0 10px
+            box-sizing: border-box
+            position: absolute
+            width: 100%
+            bottom: 7px
+            line-height: 18px
+            .title
+              color: #fff
+              font-size: 16px
+              margin-right: 35px
+              white-space: nowrap
+              overflow: hidden
+              text-overflow: ellipsis
+            .score
+              color: $score-color
+              float: right
+        .buy-btn
+          outline: none
+          cursor: pointer
+          border: 0
+          width: 100%
+          height: 40px
+          background-color: #fff
+          color: #ef4238
+          transition: all 0.2s
+          &:hover
+            background-color: #ef4238
+            color: #fff
 </style>
