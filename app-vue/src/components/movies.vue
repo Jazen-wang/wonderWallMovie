@@ -73,7 +73,7 @@ export default {
       this.$router.push('/movies/' + movie.id);
     },
     toBuy: function(movie, event) {
-      console.log('buy');
+      this.$router.push('/select/' + movie.id);
       event.stopPropagation();
     }
   }

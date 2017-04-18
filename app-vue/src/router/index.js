@@ -6,6 +6,8 @@ import index from '@/components/index-page'
 import movies from '@/components/movies'
 // 电影详情页
 import moviesDetail from '@/components/movies-detail'
+// 选座
+import selectSeats from '@/components/select-seat'
 
 Vue.use(Router)
 // 使用html5模式
@@ -26,6 +28,11 @@ var router = new Router({
       path: '/movies/:id',
       name: 'moviesDetail',
       component: moviesDetail
+    },
+    {
+      path: '/select/:id',
+      name: 'selectSeats',
+      component: selectSeats
     }
   ]
 })

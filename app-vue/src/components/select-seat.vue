@@ -1,0 +1,75 @@
+<template lang="html">
+  <div id="select-seat">
+    <div class="tips">
+      <img src="../assets/seat-empty.svg" alt="可选">
+      <span>可选座位</span>
+      <img src="../assets/seat-occupied.svg" alt="已售">
+      <span>已售座位</span>
+      <img src="../assets/seat-selected.svg" alt="已选">
+      <span>已选座位</span>
+    </div>
+    <div class="select-group">
+      <div class="row" v-for="row in seat">
+        <div class="col" v-for="col in row">
+          <div class="seat selectable"  v-if="col == 0"></div>
+          <div class="seat occupied"  v-else-if="col == -1"></div>
+          <div class="seat selected"  v-else-if="col == 1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+
+var initSeat = [
+  [-1, 0, 0, 0, -1],
+  [-1, 0, 0, 0, -1],
+  [-1, 0, 0, 0, -1],
+  [-1, 0, 0, 0, -1],
+  [-1, 0, 0, 0, -1]
+]
+
+export default {
+  data: function() {
+    return {
+      seat: initSeat
+    }
+  }
+}
+</script>
+
+<style lang="sass">
+#select-seat
+  margin-top: 40px
+  .tips
+    img
+      height: 30px
+      vertical-align: middle
+    span
+      font-size: 14px
+      margin-right: 20px
+  .select-group
+    margin-top: 30px
+    img
+      margin: 0 10px
+      cursor: pointer
+      height: 30px
+    .col
+      display: inline-block
+    .seat
+      display: inline-block
+      width: 30px
+      height: 30px
+      background-size: contain
+      cursor: pointer
+      margin: 0 5px
+    .selectable
+      background-image: url('../assets/seat-empty.svg')
+      &:hover
+        background-image: url('../assets/seat-hover.svg')
+    .occupied
+      background-image: url('../assets/seat-occupied.svg')
+    .selected
+      background-image: url('../assets/seat-selected.svg')
+</style>
