@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // 首页
-import index from '@/components/index-page'
-// 电影页
-import movies from '@/components/movies'
+import index from '@/pages/index-page'
 // 电影详情页
 import moviesDetail from '@/components/movies-detail'
 // 选座
 import selectSeats from '@/components/select-seat'
+// 电影页
+import movies from '@/pages/movies'
 
 Vue.use(Router)
 // 使用html5模式
