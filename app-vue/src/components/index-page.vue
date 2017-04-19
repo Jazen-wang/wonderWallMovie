@@ -11,6 +11,8 @@
     | 正在热映
   .will-showing
     | 即将上映
+  div.movieTag {{ this.$store.getters.movingList }}
+  div.movieTag(v-for="(item, index) in this.$store.getters.movingList") {{ item }}
 
 
 </template>
@@ -18,6 +20,7 @@
 
 <script>
 import { Carousel3d, Slide } from 'vue-carousel-3d'
+
 export default {
   mounted () {
     // 获取正在上映的列表
@@ -26,7 +29,7 @@ export default {
   components: {
     Carousel3d,
     Slide
-  }
+  },
 
 }
 </script>
