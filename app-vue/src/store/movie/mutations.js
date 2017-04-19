@@ -4,8 +4,7 @@
  */
 import * as types from './types'
 export const mutations = {
-  [types.MOVING_LIST] (state, {list}) {
-    console.log(list)
-    state.movingList = list
+  [types.MOVIES_LIST] (state, {list}) {
+    state.moviesList = list
   }
 }

@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // 首页
-import index from '@/components/index-page'
+import index from '@/pages/index-page'
 // 电影页
-import movies from '@/components/movies'
+import movies from '@/pages/movies'
 
 Vue.use(Router)
 // 使用html5模式
