@@ -9,11 +9,11 @@
       <span>已选座位</span>
     </div>
     <div class="select-group">
-      <div class="row" v-for="row in seat">
-        <div class="col" v-for="col in row">
-          <div class="seat selectable"  v-if="col == 0"></div>
-          <div class="seat occupied"  v-else-if="col == -1"></div>
-          <div class="seat selected"  v-else-if="col == 1"></div>
+      <div class="row" v-for="(row, rowIndex) in seat">
+        <div class="col" v-for="(item, colIndex) in row" @click="select(item, rowIndex, colIndex)">
+          <div class="seat selected" v-if="item.state == 'selected'"></div>
+          <div class="seat occupied" v-else-if="item.state == 'occupied'"></div>
+          <div class="seat selectable" v-else-if="item.state == 'selectable'"></div>
         </div>
       </div>
     </div>
@@ -23,19 +23,30 @@
 <script>
 
 var initSeat = [
-  [-1, 0, 0, 0, -1],
-  [-1, 0, 0, 0, -1],
-  [-1, 0, 0, 0, -1],
-  [-1, 0, 0, 0, -1],
-  [-1, 0, 0, 0, -1]
+  [{seatNum: 0, state: 'occupied'},
+  {seatNum: 1, state: 'selectable'},
+  {seatNum: 2, state: 'selectable'},
+  {seatNum: 3, state: 'selectable'},
+  {seatNum: 4, state: 'occupied'}],
+  [{seatNum: 0, state: 'occupied'},
+  {seatNum: 1, state: 'selectable'},
+  {seatNum: 2, state: 'selectable'},
+  {seatNum: 3, state: 'selectable'},
+  {seatNum: 4, state: 'occupied'}]
 ]
 
 export default {
   data: function() {
     return {
-      seat: initSeat
+      seat: initSeat,
+    }
+  },
+  methods: {
+    select: function(item, row, col) {
+      item.state = "selected";
     }
   }
+
 }
 </script>
 
