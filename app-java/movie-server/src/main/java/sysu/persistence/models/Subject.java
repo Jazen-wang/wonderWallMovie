@@ -20,8 +20,6 @@ public class Subject {
     @OneToOne
     @JoinColumn(name = "rating_id")
     private Rating rating;
-    private int ratings_count;
-    private int wish_count;
     private int collect_count;
     @ElementCollection
     private Map<String, String> images;
@@ -38,9 +36,6 @@ public class Subject {
     private int year;
     @ElementCollection
     private List<String> genres = new ArrayList<>();
-    @ElementCollection
-    private List<String> countries = new ArrayList<>();
-    private String summary;
 
     public long getId() {
         return id;
@@ -72,22 +67,6 @@ public class Subject {
 
     public void setRating(Rating rating) {
         this.rating = rating;
-    }
-
-    public int getRatings_count() {
-        return ratings_count;
-    }
-
-    public void setRatings_count(int ratings_count) {
-        this.ratings_count = ratings_count;
-    }
-
-    public int getWish_count() {
-        return wish_count;
-    }
-
-    public void setWish_count(int wish_count) {
-        this.wish_count = wish_count;
     }
 
     public int getCollect_count() {
@@ -146,22 +125,6 @@ public class Subject {
         this.genres = genres;
     }
 
-    public List<String> getCountries() {
-        return countries;
-    }
-
-    public void setCountries(List<String> countries) {
-        this.countries = countries;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
     @Override
     public String toString() {
         return "Subject{" +
@@ -169,8 +132,6 @@ public class Subject {
                 ", title='" + title + '\'' +
                 ", original_title='" + original_title + '\'' +
                 ", rating=" + rating +
-                ", ratings_count=" + ratings_count +
-                ", wish_count=" + wish_count +
                 ", collect_count=" + collect_count +
                 ", images=" + images +
                 ", subtype='" + subtype + '\'' +
@@ -178,8 +139,6 @@ public class Subject {
                 ", casts=" + casts +
                 ", year=" + year +
                 ", genres=" + genres +
-                ", countries=" + countries +
-                ", summary='" + summary + '\'' +
                 '}';
     }
 }
