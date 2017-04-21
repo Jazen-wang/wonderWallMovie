@@ -1,6 +1,7 @@
 package sysu.persistence.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,12 +10,12 @@ import java.util.Map;
  */
 @Entity
 @Table(name = "celebrity")
-public class Celebrity {
+public class Celebrity implements Serializable {
     @Id
     @Column(name = "id")
     private long id;
     private String name;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, String> avatars = new HashMap<>();
 
     public long getId() {
