@@ -1,23 +1,19 @@
-<template lang="html">
-  <div id="select-seat">
-    <div class="tips">
-      <img src="../assets/seat-empty.svg" alt="可选">
-      <span>可选座位</span>
-      <img src="../assets/seat-occupied.svg" alt="已售">
-      <span>已售座位</span>
-      <img src="../assets/seat-selected.svg" alt="已选">
-      <span>已选座位</span>
-    </div>
-    <div class="select-group">
-      <div class="row" v-for="(row, rowIndex) in seat">
-        <div class="col" v-for="(item, colIndex) in row" @click="select(item, rowIndex, colIndex)">
-          <div class="seat selected" v-if="item.state == 'selected'"></div>
-          <div class="seat occupied" v-else-if="item.state == 'occupied'"></div>
-          <div class="seat selectable" v-else-if="item.state == 'selectable'"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<template lang="jade">
+#select-seat
+  .tips
+    img(src="../assets/seat-empty.svg", alt="可选")
+    span 可选座位
+    img(src="../assets/seat-occupied.svg", alt="已售")
+    span 已售座位
+    img(src="../assets/seat-selected.svg", alt="已选")
+    span 已选座位
+  .select-group
+    .row(v-for="(row, rowIndex) in seat")
+      .col(v-for="(item, colIndex) in row", @click="select(item, rowIndex, colIndex)")
+        .seat.selected(v-if="item.state == 'selected'")
+        .seat.occupied(v-else-if="item.state == 'occupied'")
+        .seat.selectable(v-else-if="item.state == 'selectable'")
+
 </template>
 
 <script>

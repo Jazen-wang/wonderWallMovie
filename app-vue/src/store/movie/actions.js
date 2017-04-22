@@ -11,5 +11,15 @@ export const actions = {
       console.log(res);
       commit('MOVIES_LIST', {list: res})
     })
-  }
+  },
+  /**
+   *获取电影详情
+   * @param commit
+   */
+  getMovieDetail ({commit, state}) {
+    utils.get(`/movie/subject/${state.id}`, {}).then(res => {
+      // commit('DETAIL_LOADING', {loading: false})
+      commit('MOVING_DETAIL', {movieDetail: res})
+    })
+  },
 }

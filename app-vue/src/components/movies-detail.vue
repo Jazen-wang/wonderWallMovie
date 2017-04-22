@@ -1,30 +1,37 @@
-<template lang="html">
-  <div>
-    <div id="banner">
-      <div class="container">
-        <img src="../assets/test.jpg" alt="test" class="poster">
-        <div class="info-box">
-          <h2>速度与激情8</h2>
-          <p>The Fate of the Furious</p>
-          <ul class="list">
-            <li>动作,惊悚,犯罪</li>
-            <li>美国 / 136分钟</li>
-            <li>2017-04-14大陆上映</li>
-          </ul>
-          <p class="score">用户评分: 9.5</p>
-        </div>
-      </div>
-    </div>
-    <div id="operation">
-      <button type="button" name="buy" class="buy-btn">购买</button>
-
-    </div>
-  </div>
-
+<template lang="jade">
+div
+  #banner
+    .container
+      img.poster(:src="movieDetail.images.large")
+      .info-box
+        h2 {{movieDetail.title}}
+        p {{movieDetail.original_title}}
+        ul.list
+          li
+            span(v-for="item in movieDetail.genres") {{item}}
+          li
+            span(v-for="(item,index) in movieDetail.countries") {{item}}
+          li 2017-04-14大陆上映
+        p.score 用户评分: {{movieDetail.rating.average * 2}}
+  #operation
+    button.buy-btn(type="button", name="buy") 购买
 </template>
 
 <script>
 export default {
+  data: function() {
+    return {}
+  },
+  computed: {
+    movieDetail () {
+      return this.$store.getters.movieDetail
+    }
+  },
+  mounted () {
+    let id = this.$route.params['id'];
+    this.$store.commit('MOVING_ID', {id});
+    this.$store.dispatch('getMovieDetail');
+  },
 }
 </script>
 
@@ -69,7 +76,7 @@ $buy-btn-color-active: #b12424
           margin: 4px 0
       .score
         position: absolute
-        bottom: 10px
+        bottom: 20px
         font-size: 15px
 
 #operation

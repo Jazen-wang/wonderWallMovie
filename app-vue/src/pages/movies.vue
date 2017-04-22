@@ -1,61 +1,44 @@
-<template>
-  <div id="movies-view">
-    <el-radio-group v-model="sortType">
-      <el-radio :label="1">按热门排序</el-radio>
-      <el-radio :label="2">按时间排序</el-radio>
-      <el-radio :label="3">按评价排序</el-radio>
-    </el-radio-group>
-    <div class="movie-list">
-      <el-row>
-        <el-col v-for="item in movies">
-          <div class="item" @click="toDetail(item)">
-            <div class="poster"></div>
-            <div class="linear-cover">
-              <div class="info">
-                <i class="score"> {{ item.score }} </i>
-                <div class="title"> {{ item.title }} </div>
-              </div>
-            </div>
-            <button type="button" name="buy-btn" class="buy-btn" @click="toBuy(item, $event)">购买</button>
-          </div>
-        </el-col>
-      </el-row>
-    </div>
-  </div>
+<template lang="jade">
+  #movies-view
+    el-radio-group(v-model="sortType")
+      el-radio(:label="1") 按热门排序
+      el-radio(:label="2") 按时间排序
+      el-radio(:label="3") 按评价排序
+    movielist(:data="sortMovies")
 </template>
 
 <script>
-
-var movies = [
-  { title: "速度与激情8", score: 9.5, id:1 },
-  { title: "2", score: 8.0, id:2 },
-  { title: "3", score: 5.5, id:3 },
-  { title: "4", score: 10.0, id:4 },
-  { title: "5", score: 8.4, id:5 },
-  { title: "6", score: 6.2, id:6 },
-  { title: "7", score: 2.0, id:7 },
-]
+import movielist from '@/components/movie-list'
 
 export default {
   name: 'hello',
   data () {
     return {
-      movies: movies,
       sortType: 1
     }
+  },
+  components: {
+    movielist
+  },
+  mounted: function() {
+    // 如果不为空，获取正在上映的列表
+    this.$store.dispatch('getMovies');
   },
   watch: {
     // 观察排序选项，对电影进行排序
     sortType: function() {
       switch(this.sortType) {
         case 1:
-          this.movies.sort(this.compareTitle);
+          this.sortMovies.sort(this.compareTitle);
           break;
         case 2:
-          this.movies.sort(this.compareScore);
+          this.sortMovies.sort(this.compareId);
+          break;
+        case 3:
+          this.sortMovies.sort(this.compareScore);
           break;
         default:
-          this.movies.sort(this.compareTitle);
+          this.sortMovies.sort(this.compareTitle);
       }
     }
   },
@@ -66,15 +49,16 @@ export default {
     },
     // 对电影的评分进行排序（降序）
     compareScore: function(a, b) {
-      return a.score > b.score;
+      return a.rating.average*2 > b.rating.average*2;
     },
-    // 跳转到电影详情
-    toDetail: function(movie) {
-      this.$router.push('/movies/' + movie.id);
-    },
-    toBuy: function(movie, event) {
-      this.$router.push('/select/' + movie.id);
-      event.stopPropagation();
+    // 对电影的时间进行排序（没有时间？？？，用id大小来排吧）
+    compareId: function(a, b) {
+      return a.id > b.id;
+    }
+  },
+  computed: {
+    sortMovies () {
+      return this.$store.getters.moviesList.subjects;
     }
   }
 
@@ -89,7 +73,7 @@ $score-color: #ffb400
   margin-left: auto
   margin-right: auto
   .el-radio-group
-    margin-left: 20px
+    margin-bottom: 30px
     margin-top: 40px
     display: block
     text-align: left

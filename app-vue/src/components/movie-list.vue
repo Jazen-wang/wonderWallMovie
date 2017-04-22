@@ -4,13 +4,13 @@
 
 .moviesList-container
   el-card.movie-card(v-for='(subject, index) in data')
-    .firm-pic
+    .firm-pic(@click="toDetail(subject)")
       .firm-overlay
       img.movieImg(:src='subject.images.large', alt='')
       .film-info
         .title {{ subject.title }}
-        .grade {{ subject.rating.average * 2 }}
-    .buy
+        .grade {{ (subject.rating.average * 2 == 0) ? "" : subject.rating.average * 2 }}
+    .buy(@click="toBuy(subject, $event)")
       | 购票
 
 </template>
@@ -23,15 +23,20 @@ export default{
     return {
     }
   },
-  watch: {
-    data () {
-      console.log(this.data)
-    }
-  },
   methods: {
-    showDetail (id) {
-      // this.$store.commit('DETAIL_LOADING', {loading: true})
-      this.$router.push({path: '/moviesDetail', query: {id: id}})
+    // 跳转到电影详情
+    toDetail: function(movie) {
+      // 获取详情
+      this.$store.commit('MOVING_ID', {id: movie.id});
+      this.$store.dispatch('getMovieDetail');
+      // 跳转
+      this.$router.push('/movies/' + movie.id);
+
+    },
+    // 跳转到购买页
+    toBuy: function(movie, event) {
+      this.$router.push('/select/' + movie.id);
+      event.stopPropagation();
     }
   },
   computed: {
@@ -47,6 +52,7 @@ export default{
   text-align: left
   margin: 0 auto
   .el-card__body
+    cursor: pointer
     padding: 0
   .firm-pic
     overflow: hidden
@@ -76,7 +82,7 @@ export default{
     position: relative
     height: 30px
     line-height: 30px
-    top: -36px
+    top: -42px
     .title, .grade
       display: block
       color: white
@@ -98,7 +104,7 @@ export default{
     height: 40px
     line-height: 40px
     text-align: center
-    font-size: 20px
+    font-size: 18px
     font-weight: bold
     color: #ef4238
     &:hover

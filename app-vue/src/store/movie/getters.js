@@ -10,5 +10,9 @@ export const getters = {
       }
       return state.moviesList
     }
-  }
+  },
+  movieDetail: state => {
+    state.movieDetail.rating.average = state.movieDetail.rating.average / 2
+    return state.movieDetail
+  },
 }

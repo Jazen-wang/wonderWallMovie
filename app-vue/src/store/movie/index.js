@@ -4,7 +4,12 @@ import {mutations} from './mutations'
 const state = {
   moviesList: {  // 正在上映列表
     subjects: []
-  }
+  },
+  movieDetail: { // 电影详情
+    rating: {},
+    images: {}
+  },
+  id: '', // 电影ID
 }
 
 export default {
