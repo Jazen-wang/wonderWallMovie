@@ -67,7 +67,7 @@ export default{
       background: url('../assets/shadow.png') repeat-x bottom
       z-index: 5
       &:hover + img
-        transform: scale(1.2)
+        transform: scale(1.1)
   .movie-card
     width: 200px
     height: 320px
