@@ -7,8 +7,8 @@
     .ww-search
       a.title wonderWall电影
       .search-container
-        el-input(placeholder='电影、影院', v-model='content')
-          el-button(slot='append', icon='search', @click='searchMovie')
+        el-input(placeholder='电影、影院', v-model='content', icon="search", :on-icon-click="searchMovie")
+      el-button.login-btn(type="text", @click="showLoginDialog") 登陆
     ul.ww-bar
       li(v-for='bar in barList', @click='choiceUrl(bar.title)')
         router-link(:to='bar.url', :class="title===bar.title? 'active':''") {{bar.title}}
@@ -39,6 +39,9 @@
         this.$store.dispatch('getSearchList')
         this.$store.commit('SEARCH_LOADING', {loading: true})
         this.$router.push({path: '/search', query: {searchText: this.content}})
+      },
+      showLoginDialog () {
+        this.$store.dispatch('showLoginDialog')
       }
     }
   }
@@ -92,7 +95,10 @@
         margin-left: 50px
         input
           height: 34px
-
+      
+      .login-btn
+        height: 100%
+        float: right
       .ww-title-img
         width: 175px
         height: 90px

@@ -1,7 +1,7 @@
 <template lang="jade">
 .index-page
-  el-carousel(height="350px")
-    el-carousel-item(v-for="item in carousels")
+  el-carousel(height="400px")
+    el-carousel-item(v-for="item in carousels" key="item.src")
       img(:src="item.src")
   .hot-showing
     .title 正在热映
@@ -64,15 +64,19 @@ export default {
   margin-left: 0px !important
 </style>
 
-<style scoped>
+<style>
 
 .el-carousel {
   margin: 30px 0;
 }
 
+.el-carousel-item {
+  display: table-cell; //主要是这个属性
+  vertical-align: middle;
+  text-align: center;
+}
+
 .el-carousel img {
-  width: 1200px;
-  height: 350px;
 }
 
 </style>

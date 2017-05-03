@@ -10,6 +10,7 @@ const state = {
     images: {}
   },
   id: '', // 电影ID
+  loginDialogVisible: false, // 登陆对话框
 }
 
 export default {
