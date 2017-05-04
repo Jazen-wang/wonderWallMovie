@@ -17,5 +17,8 @@ export const getters = {
   },
   loginDialogVisible: state => {
     return state.loginDialogVisible
+  },
+  registerDialogVisible: state => {
+    return state.registerDialogVisible
   }
 }

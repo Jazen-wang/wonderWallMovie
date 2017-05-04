@@ -32,5 +32,17 @@ export const actions = {
    */
   hideLoginDialog ({commit, state}) {
     commit('LOGIN_DIALOG_VISIBLE', {visible: false})
+  },
+  /**
+   * 显示注册对话框
+   */
+  showRegisterDialog ({commit, state}) {
+    commit('REGISTER_DIALOG_VISIBLE', {visible: true})
+  },
+  /**
+   * 隐藏注册对话框
+   */
+  hideRegisterDialog ({commit, state}) {
+    commit('REGISTER_DIALOG_VISIBLE', {visible: false})
   }
 }

@@ -1,17 +1,15 @@
 <template lang="jade">
-el-dialog(title="登录", v-model="loginDialogVisible", @close="cancel", size="tiny")
+el-dialog(title="注册", v-model="registerDialogVisible", @close="cancel", size="tiny")
   el-form(:model="form")
     el-form-item(label="用户名")
       el-input(v-model="form.username", auto-complete="off")
     el-form-item(label="密码")
       el-input(v-model="form.password", auto-complete="off")
-    el-form-item
-      el-checkbox(v-model="form.remember") 记住我
-    span 没有账号?点击
-      el-button(type="text" @click="register") 注册
+    el-form-item(label="重复密码")
+      el-input(v-model="form.repassword", auto-complete="off")
   .dialog-footer(slot="footer")
     el-button(@click="cancel") 取消
-    el-button(type="primary", @click="confirm") 登录
+    el-button(type="primary", @click="confirm") 注册
 
 
 </template>
@@ -23,26 +21,27 @@ el-dialog(title="登录", v-model="loginDialogVisible", @close="cancel", size="t
         form: {
           username: '',
           password: '',
-          remember: false,
+          repassword: ''
         },
       }
     },
     computed: {
-      loginDialogVisible () {
-        return this.$store.getters.loginDialogVisible;
+      registerDialogVisible () {
+        return this.$store.getters.registerDialogVisible
       }
     },
     methods: {
       cancel: function() {
-        this.$store.dispatch('hideLoginDialog');
+        this.$store.dispatch('hideRegisterDialog')
       },
       confirm: function() {
-        this.$store.dispatch('hideLoginDialog');
-      },
-      register: function() {
-        this.cancel();
-        this.$store.dispatch('showRegisterDialog');
+        this.$store.dispatch('hideRegisterDialog')
       }
     }
   }
 </script>
+
+<style lang="sass">
+  .el-dialog__body
+ 
+</style>

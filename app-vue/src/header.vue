@@ -3,6 +3,8 @@
  -->
 <template lang="jade">
 .ww-header
+  LoginDialog
+  RegisterDialog
   .ww-header-container
     .ww-search
       a.title WonderWall
@@ -15,7 +17,12 @@
 </template>
 
 <script>
-  export default{
+import LoginDialog from './components/login-dialog'
+import RegisterDialog from './components/register-dialog'
+  export default {
+    components: {
+      LoginDialog, RegisterDialog
+    },
     data () {
       return {
         activeName: '/',
