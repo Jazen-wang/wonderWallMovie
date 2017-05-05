@@ -67,7 +67,7 @@ export default {
 <style>
 
 .el-carousel {
-  margin: 30px 0;
+  margin-bottom: 20px;
 }
 
 .el-carousel-item {

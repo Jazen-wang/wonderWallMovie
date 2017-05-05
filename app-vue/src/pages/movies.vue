@@ -73,8 +73,8 @@ $score-color: #ffb400
   margin-left: auto
   margin-right: auto
   .el-radio-group
-    margin-bottom: 30px
-    margin-top: 40px
+    margin-bottom: 20px
+    margin-top: 20px
     display: block
     text-align: left
   .movie-list

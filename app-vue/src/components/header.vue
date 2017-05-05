@@ -2,30 +2,30 @@
      @date: 2016.04.15
  -->
 <template lang="jade">
-.ww-header
+.ww-navbar
   LoginDialog
   RegisterDialog
-  .ww-header-container
-    .ww-search
+  .ww-navbar-container
+    .navbar-content
       a.title WonderWall
       .search-container
         el-input(placeholder='电影、影院', v-model='content', icon="search", :on-icon-click="searchMovie")
       el-button.login-btn(type="text", @click="showLoginDialog") 登陆
-      el-tabs(v-model="activeName", @tab-click="handleClick")
-        el-tab-pane(v-for='(bar, index) in barList', :label="bar.title", :name="bar.url", :key="index")
+      .tabs
+        el-button.tab-item(type="text", v-for="(bar, index) in barList" , 
+          :key="index", @click="changeUrl(bar, index)", :class="{'active': $route.path == bar.url }") {{ bar.title }}
 
 </template>
 
 <script>
-import LoginDialog from './components/login-dialog'
-import RegisterDialog from './components/register-dialog'
+import LoginDialog from './login-dialog'
+import RegisterDialog from './register-dialog'
   export default {
     components: {
       LoginDialog, RegisterDialog
     },
     data () {
       return {
-        activeName: '/',
         content: '',
         title: '首页',
         barList: [{
@@ -38,11 +38,8 @@ import RegisterDialog from './components/register-dialog'
       }
     },
     methods: {
-      handleClick(tab, event) {
-        this.$router.push(tab.name)
-      },
-      choiceUrl (title) {
-        this.title = title
+      changeUrl (bar, index) {
+        this.$router.push(bar.url)
       },
       searchMovie () {
         this.$store.commit('SEARCH_TEXT', {searchText: this.content})
@@ -57,36 +54,15 @@ import RegisterDialog from './components/register-dialog'
   }
 </script>
 <style lang="sass">
-.ww-header
+.ww-navbar
   background: #fff
   width: 100%
-  height: 114px
 
-  .ww-bar
-    width: 950px
-    margin: 0 auto
-  ul
-    li
-      list-style: none
-      float: left
-      line-height: 20px
-      cursor: pointer
-      min-width: 80px
-      a
-        display: inline-block
-        padding: 8px 0px
-        font-size: 16px
-        color: #aaa
-        text-decoration: none
-        width: 80px
-      a.active
-        color: #27a
-
-  .ww-header-container
+  .ww-navbar-container
     width: 100%
     margin: 0 auto
-    // border-bottom: 1px solid #d8d8d8
-    .ww-search
+    border-bottom: 1px solid #d8d8d8
+    .navbar-content
       width: 950px
       margin: 0 auto
       height: 75px
@@ -102,12 +78,31 @@ import RegisterDialog from './components/register-dialog'
         display: inline-block
         line-height: 75px
         vertical-align: top
-        width: 500px
+        width: 250px
         margin-left: 50px
+        margin-right: 50px
         input
           height: 34px
       
+      .tabs
+        height: 100%
+        display: inline-block
+        .tab-item
+          width: 60px
+          height: 100%
+          color: #00b7ff
+          border-radius: 0
+          margin-left: 0
+          &:hover
+            background-color: #eee
+        .active
+          background-color: #00b7ff
+          color: #fff
+          &:hover
+            background-color: #00b7ff
+
       .login-btn
+        width: 60px
         height: 100%
         float: right
         color: #00b7ff

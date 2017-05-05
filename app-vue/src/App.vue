@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import Dheader from './header'
+import dheader from './components/header'
 export default {
   components: {
-    Dheader
+    dheader
   }
 }
 </script>
