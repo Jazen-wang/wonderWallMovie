@@ -1,18 +1,11 @@
 <template lang="jade">
 .index-page
-  carousel-3d
-    slide.movie-1(:index='0')
-      img(src="../assets/movie-1.jpg")
-    slide.movie-2(:index='1')
-      img(src="../assets/movie-2.jpg")
-    slide.movie-3(:index='2')
-      img(src="../assets/movie-3.jpg")
+  el-carousel(height="400px")
+    el-carousel-item(v-for="item in carousels" key="item.src")
+      img(:src="item.src")
   .hot-showing
     .title 正在热映
     movielist(:data="moviesList")
-  //- .will-show
-  //-   .title 即将上映
-  //-   movielist(:data="moviesList")
 
 </template>
 
@@ -21,7 +14,18 @@
 import { Carousel3d, Slide } from 'vue-carousel-3d'
 import movielist from '@/components/movie-list'
 
+let icarousels = [
+  {src: require('../assets/movie-1.jpg')},
+  {src: require('../assets/movie-2.jpg')},
+  {src: require('../assets/movie-3.jpg')},
+]
+
 export default {
+  data: function() {
+    return {
+      carousels: icarousels
+    }
+  },
   mounted () {
     // 获取正在上映的列表
     this.$store.dispatch('getMovies')
@@ -60,10 +64,19 @@ export default {
   margin-left: 0px !important
 </style>
 
-<style scoped>
-.carousel-3d-slider img {
-  width: 800px;
-  height: 300px;
+<style>
+
+.el-carousel {
+  margin-bottom: 20px;
+}
+
+.el-carousel-item {
+  display: table-cell; //主要是这个属性
+  vertical-align: middle;
+  text-align: center;
+}
+
+.el-carousel img {
 }
 
 </style>
