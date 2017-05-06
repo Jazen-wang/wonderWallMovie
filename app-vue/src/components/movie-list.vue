@@ -3,7 +3,7 @@
 <template lang="jade">
 
 .moviesList-container
-  el-card.movie-card(v-for='(subject, index) in data')
+  el-card.movie-card(v-for='(subject, index) in data' key="index")
     .firm-pic(@click="toDetail(subject)")
       .firm-overlay
       img.movieImg(:src='subject.images.large', alt='')
@@ -49,8 +49,8 @@ export default{
 
 <style lang="sass">
 .moviesList-container
+  overflow: auto
   text-align: left
-  margin: 0 auto
   .el-card__body
     cursor: pointer
     padding: 0
@@ -67,13 +67,14 @@ export default{
       background: url('../assets/shadow.png') repeat-x bottom
       z-index: 5
       &:hover + img
-        transform: scale(1.2)
+        transform: scale(1.1)
   .movie-card
     width: 200px
     height: 320px
-    margin-right: 20px
+    margin-left: 10px
+    margin-right: 10px
     margin-bottom: 30px
-    display: inline-block
+    float: left
     img
       height: 280px
       width: 200px

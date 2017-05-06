@@ -15,4 +15,10 @@ export const getters = {
     state.movieDetail.rating.average = state.movieDetail.rating.average / 2
     return state.movieDetail
   },
+  loginDialogVisible: state => {
+    return state.loginDialogVisible
+  },
+  registerDialogVisible: state => {
+    return state.registerDialogVisible
+  }
 }

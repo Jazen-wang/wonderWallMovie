@@ -13,4 +13,10 @@ export const mutations = {
   [types.MOVING_DETAIL] (state, {movieDetail}) {
     state.movieDetail = movieDetail
   },
+  [types.LOGIN_DIALOG_VISIBLE] (state, {visible}) {
+    state.loginDialogVisible = visible
+  },
+  [types.REGISTER_DIALOG_VISIBLE] (state, {visible}) {
+    state.registerDialogVisible = visible
+  },
 }
