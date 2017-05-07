@@ -19,16 +19,20 @@
 <script>
 
 var initSeat = [
-  [{seatNum: 0, state: 'occupied'},
-  {seatNum: 1, state: 'selectable'},
-  {seatNum: 2, state: 'selectable'},
-  {seatNum: 3, state: 'selectable'},
-  {seatNum: 4, state: 'occupied'}],
-  [{seatNum: 0, state: 'occupied'},
-  {seatNum: 1, state: 'selectable'},
-  {seatNum: 2, state: 'selectable'},
-  {seatNum: 3, state: 'selectable'},
-  {seatNum: 4, state: 'occupied'}]
+  [
+    {seatNum: 0, state: 'occupied'},
+    {seatNum: 1, state: 'selectable'},
+    {seatNum: 2, state: 'selectable'},
+    {seatNum: 3, state: 'selectable'},
+    {seatNum: 4, state: 'occupied'}
+  ],
+  [
+    {seatNum: 0, state: 'occupied'},
+    {seatNum: 1, state: 'selectable'},
+    {seatNum: 2, state: 'selectable'},
+    {seatNum: 3, state: 'selectable'},
+    {seatNum: 4, state: 'occupied'}
+  ]
 ]
 
 export default {
@@ -39,7 +43,7 @@ export default {
   },
   methods: {
     select: function(item, row, col) {
-      item.state = "selected";
+      item.state = item.state == "selected" ? "selectable" : "selected";
     }
   }
 
@@ -49,6 +53,7 @@ export default {
 <style lang="sass">
 #select-seat
   margin-top: 40px
+  text-align: center
   .tips
     img
       height: 30px
