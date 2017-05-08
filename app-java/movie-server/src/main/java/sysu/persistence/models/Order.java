@@ -1,20 +1,45 @@
 package sysu.persistence.models;
 
+import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Shower on 2017/5/6 0006.
  */
+@Entity
+@Table(name = "order")
 public class Order {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
-    private long userId;
+    @OneToOne
+    @JoinColumn(name = "id")
+    private User user;
     private LocalTime orderDate;
-    private long timingId;
-    private LocalTime watchingDate;
-    private long seatId;
-    private double payment;
+    private double ticketPrice;
+    private int ticketCount;
+    @OneToMany
+    @JoinColumn(name = "id")
+    private List<Seat> seats = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Screening screening;
 
     public Order() {}
+
+    public Order(User user, LocalTime orderDate,
+                 double ticketPrice, int ticketCount,
+                 List<Seat> seats, Screening screening) {
+        this.user = user;
+        this.orderDate = orderDate;
+        this.ticketPrice = ticketPrice;
+        this.ticketCount = ticketCount;
+        this.seats = seats;
+        this.screening = screening;
+    }
 
     public long getId() {
         return id;
@@ -24,12 +49,12 @@ public class Order {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalTime getOrderDate() {
@@ -40,48 +65,35 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public long getTimingId() {
-        return timingId;
+    public double getTicketPrice() {
+        return ticketPrice;
     }
 
-    public void setTimingId(long timingId) {
-        this.timingId = timingId;
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 
-    public LocalTime getWatchingDate() {
-        return watchingDate;
+    public int getTicketCount() {
+        return ticketCount;
     }
 
-    public void setWatchingDate(LocalTime watchingDate) {
-        this.watchingDate = watchingDate;
+    public void setTicketCount(int ticketCount) {
+        this.ticketCount = ticketCount;
     }
 
-    public long getSeatId() {
-        return seatId;
+    public List<Seat> getSeats() {
+        return seats;
     }
 
-    public void setSeatId(long seatId) {
-        this.seatId = seatId;
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
     }
 
-    public double getPayment() {
-        return payment;
+    public Screening getScreening() {
+        return screening;
     }
 
-    public void setPayment(double payment) {
-        this.payment = payment;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", orderDate=" + orderDate +
-                ", timingId=" + timingId +
-                ", watchingDate=" + watchingDate +
-                ", seatId=" + seatId +
-                ", payment=" + payment +
-                '}';
+    public void setScreening(Screening screening) {
+        this.screening = screening;
     }
 }

@@ -16,10 +16,47 @@ public class Cinema {
     private long id;
     private String name;
     private String address;
-    @OneToMany
-    @JoinColumn(name = "hall_id")
-    private List<Hall> halls = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "city_id", insertable = false, updatable = false)
+    private City city;
 
     public Cinema() {}
 
+    public Cinema(String name, String address, City city) {
+        this.name = name;
+        this.address = address;
+        this.city = city;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 }

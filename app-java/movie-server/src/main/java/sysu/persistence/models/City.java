@@ -17,10 +17,35 @@ public class City {
     private String name;
     private int code;
 
-    @OneToMany
-    @JoinColumn(name = "cinema_id")
-    private List<Cinema> cinemas = new ArrayList<>();
-
     public City() {}
+
+    public City(String name, int code) {
+        this.name = name;
+        this.code = code;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 
 }

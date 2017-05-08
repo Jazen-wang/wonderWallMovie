@@ -1,0 +1,73 @@
+package sysu.persistence.models;
+
+import javax.persistence.*;
+import java.time.LocalTime;
+
+/**
+ * Created by Shower on 2017/5/6 0006.
+ */
+@Entity
+@Table(name = "timing")
+public class Screening {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private long id;
+    private LocalTime start;
+    private LocalTime end;
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Hall hall;
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Movie movie;
+
+    public Screening() {}
+
+    public Screening(LocalTime start, LocalTime end, Hall hall, Movie movie) {
+        this.start = start;
+        this.end = end;
+        this.hall = hall;
+        this.movie = movie;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public LocalTime getStart() {
+        return start;
+    }
+
+    public void setStart(LocalTime start) {
+        this.start = start;
+    }
+
+    public LocalTime getEnd() {
+        return end;
+    }
+
+    public void setEnd(LocalTime end) {
+        this.end = end;
+    }
+
+    public Hall getHall() {
+        return hall;
+    }
+
+    public void setHall(Hall hall) {
+        this.hall = hall;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+}

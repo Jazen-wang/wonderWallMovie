@@ -15,11 +15,37 @@ public class Hall {
     @Column(name = "id")
     private long id;
     private int number;
-
-    @OneToMany
-    @JoinColumn(name = "seat_id")
-    private List<Seat> seats = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "cinema_id", insertable = false, updatable = false)
+    private Cinema cinema;
 
     public Hall() {}
+    public Hall(int number, Cinema cinema) {
+        this.number = number;
+        this.cinema = cinema;
+    }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
+    }
 }
