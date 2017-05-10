@@ -1,4 +1,5 @@
 .DS_Store
+npm-debug.log
 app-vue/node_modules/
 app-vue/dist/
 app-vue/npm-debug.log

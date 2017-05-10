@@ -3,7 +3,9 @@ import Router from 'vue-router'
 // 首页
 import index from '@/pages/index-page'
 // 电影详情页
-import moviesDetail from '@/components/movies-detail'
+import movieDetailPage from '@/pages/movie-detail-page'
+// 选择影院
+import selectCinema from '@/pages/select-cinema'
 // 选座
 import selectSeats from '@/components/select-seat'
 // 电影页
@@ -26,13 +28,18 @@ var router = new Router({
     },
     {
       path: '/movies/:id',
-      name: 'moviesDetail',
-      component: moviesDetail
+      name: 'movieDetail',
+      component: movieDetailPage
     },
     {
       path: '/select/:id',
       name: 'selectSeats',
       component: selectSeats
+    },
+    {
+      path: '/movies/:id/cinema',
+      name: 'selectCinema',
+      component: selectCinema
     }
   ]
 })

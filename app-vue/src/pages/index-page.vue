@@ -11,7 +11,6 @@
 
 
 <script>
-import { Carousel3d, Slide } from 'vue-carousel-3d'
 import movielist from '@/components/movie-list'
 
 let icarousels = [
@@ -31,8 +30,6 @@ export default {
     this.$store.dispatch('getMovies')
   },
   components: {
-    Carousel3d,
-    Slide,
     movielist
   },
   computed: {
@@ -49,6 +46,7 @@ export default {
 .carousel-3d-slider, .carousel-3d-slide
   width: 800px !important
   height: 300px !important
+
 .index-page
   // max-width: 1000px
   margin: 0 10%

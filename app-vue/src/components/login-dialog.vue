@@ -4,7 +4,7 @@ el-dialog(title="登录", v-model="loginDialogVisible", @close="cancel", size="t
     el-form-item(label="用户名")
       el-input(v-model="form.username", auto-complete="off", placeholder="8-16位字母数字组合")
     el-form-item(label="密码")
-      el-input(v-model="form.password", auto-complete="off", placeholder="密码")
+      el-input(v-model="form.password", auto-complete="off", placeholder="密码", type="password")
     el-form-item
       el-checkbox(v-model="form.remember") 记住我
     span 没有账号?点击
