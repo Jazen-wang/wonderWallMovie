@@ -16,7 +16,7 @@ public class Cinema {
     private long id;
     private String name;
     private String address;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "city_id", insertable = false, updatable = false)
     private City city;
 

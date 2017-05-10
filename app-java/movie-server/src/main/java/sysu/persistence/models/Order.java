@@ -16,29 +16,25 @@ public class Order {
     @Column(name = "id")
     private long id;
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     private User user;
     private LocalTime orderDate;
     private double ticketPrice;
     private int ticketCount;
     @OneToMany
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "seat_id")
     private List<Seat> seats = new ArrayList<>();
-    @OneToOne
-    @JoinColumn(name = "id")
-    private Screening screening;
 
     public Order() {}
 
     public Order(User user, LocalTime orderDate,
                  double ticketPrice, int ticketCount,
-                 List<Seat> seats, Screening screening) {
+                 List<Seat> seats) {
         this.user = user;
         this.orderDate = orderDate;
         this.ticketPrice = ticketPrice;
         this.ticketCount = ticketCount;
         this.seats = seats;
-        this.screening = screening;
     }
 
     public long getId() {
@@ -89,11 +85,4 @@ public class Order {
         this.seats = seats;
     }
 
-    public Screening getScreening() {
-        return screening;
-    }
-
-    public void setScreening(Screening screening) {
-        this.screening = screening;
-    }
 }

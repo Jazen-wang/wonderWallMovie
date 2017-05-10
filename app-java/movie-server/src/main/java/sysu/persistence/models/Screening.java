@@ -7,7 +7,7 @@ import java.time.LocalTime;
  * Created by Shower on 2017/5/6 0006.
  */
 @Entity
-@Table(name = "timing")
+@Table(name = "screening")
 public class Screening {
     @Id
     @GeneratedValue
@@ -16,10 +16,10 @@ public class Screening {
     private LocalTime start;
     private LocalTime end;
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "hall_id")
     private Hall hall;
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
     public Screening() {}

@@ -15,7 +15,7 @@ public class Hall {
     @Column(name = "id")
     private long id;
     private int number;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "cinema_id", insertable = false, updatable = false)
     private Cinema cinema;
 

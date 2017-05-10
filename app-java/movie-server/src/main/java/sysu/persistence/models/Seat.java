@@ -15,16 +15,16 @@ public class Seat {
     private int positionX;
     private int positionY;
     private boolean sold = false;
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "hall_id", insertable = false, updatable = false)
-    private Hall hall;
+    @ManyToOne
+    @JoinColumn(name = "screening_id", insertable = false, updatable = false)
+    private Screening screening;
 
 
     public Seat() {}
-    public Seat(int x, int y, Hall hall) {
+    public Seat(int x, int y, Screening screening) {
         this.positionX = x;
         this.positionY = y;
-        this.hall = hall;
+        this.screening = screening;
     }
 
     public long getId() {
@@ -59,11 +59,11 @@ public class Seat {
         this.sold = sold;
     }
 
-    public Hall getHall() {
-        return hall;
+    public Screening getScreening() {
+        return screening;
     }
 
-    public void setHall(Hall hall) {
-        this.hall = hall;
+    public void setScreening(Screening screening) {
+        this.screening = screening;
     }
 }

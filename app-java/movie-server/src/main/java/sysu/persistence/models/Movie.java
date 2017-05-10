@@ -9,15 +9,14 @@ import javax.persistence.*;
 @Table(name = "movie")
 public class Movie {
     @Id
-    @GeneratedValue
     @Column(name = "id")
     private long id;
-    private String name;
+    private String title;
 
     public Movie() {}
 
     public Movie(String name) {
-        this.name = name;
+        this.title = name;
     }
 
     public long getId() {
@@ -28,11 +27,11 @@ public class Movie {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
