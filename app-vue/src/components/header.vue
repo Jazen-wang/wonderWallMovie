@@ -8,12 +8,12 @@
   .ww-navbar-container
     .navbar-content
       a.title WonderWall
+      .tabs
+        el-button.tab-item(type="text", v-for="(bar, index) in barList" ,
+          :key="index", @click="changeUrl(bar, index)", :class="{'active': $route.path == bar.url }") {{ bar.title }}
       .search-container
         el-input(placeholder='电影、影院', v-model='content', icon="search", :on-icon-click="searchMovie")
       el-button.login-btn(type="text", @click="showLoginDialog") 登陆
-      .tabs
-        el-button.tab-item(type="text", v-for="(bar, index) in barList" , 
-          :key="index", @click="changeUrl(bar, index)", :class="{'active': $route.path == bar.url }") {{ bar.title }}
 
 </template>
 
@@ -63,8 +63,7 @@ import RegisterDialog from './register-dialog'
     margin: 0 auto
     border-bottom: 1px solid #d8d8d8
     .navbar-content
-      width: 950px
-      margin: 0 auto
+      margin: 0 10%
       height: 75px
       .title
         color: #000
@@ -83,16 +82,18 @@ import RegisterDialog from './register-dialog'
         margin-right: 50px
         input
           height: 34px
-      
+
       .tabs
         height: 100%
         display: inline-block
+        margin-left: 6%
         .tab-item
-          width: 60px
+          width: 80px
           height: 100%
           color: #00b7ff
           border-radius: 0
           margin-left: 0
+          font-size: 18px
           &:hover
             background-color: #eee
         .active
@@ -102,10 +103,11 @@ import RegisterDialog from './register-dialog'
             background-color: #00b7ff
 
       .login-btn
-        width: 60px
+        width: 80px
         height: 100%
         float: right
         color: #00b7ff
+        font-size: 18px
       .ww-title-img
         width: 175px
         height: 90px

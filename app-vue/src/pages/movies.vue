@@ -69,9 +69,7 @@ export default {
 $score-color: #ffb400
 
 #movies-view
-  width: 1000px
-  margin-left: auto
-  margin-right: auto
+  margin: 0 10%
   .el-radio-group
     margin-bottom: 20px
     margin-top: 20px

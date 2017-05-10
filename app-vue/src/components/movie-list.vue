@@ -71,13 +71,13 @@ export default{
   .movie-card
     width: 200px
     height: 320px
-    margin-left: 10px
-    margin-right: 10px
+    margin-right: 40px
     margin-bottom: 30px
     float: left
     img
       height: 280px
       width: 200px
+
   .film-info
     z-index: 6
     position: relative
