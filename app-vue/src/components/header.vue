@@ -18,13 +18,15 @@
 </template>
 
 <script>
-import LoginDialog from './login-dialog'
-import RegisterDialog from './register-dialog'
+  import LoginDialog from './login-dialog'
+  import RegisterDialog from './register-dialog'
   export default {
     components: {
-      LoginDialog, RegisterDialog
+      LoginDialog,
+      RegisterDialog
     },
-    data () {
+    
+    data() {
       return {
         content: '',
         title: '首页',
@@ -38,21 +40,31 @@ import RegisterDialog from './register-dialog'
       }
     },
     methods: {
-      changeUrl (bar, index) {
+      changeUrl(bar, index) {
         this.$router.push(bar.url)
       },
-      searchMovie () {
-        this.$store.commit('SEARCH_TEXT', {searchText: this.content})
+      searchMovie() {
+        this.$store.commit('SEARCH_TEXT', {
+          searchText: this.content
+        })
         this.$store.dispatch('getSearchList')
-        this.$store.commit('SEARCH_LOADING', {loading: true})
-        this.$router.push({path: '/search', query: {searchText: this.content}})
+        this.$store.commit('SEARCH_LOADING', {
+          loading: true
+        })
+        this.$router.push({
+          path: '/search',
+          query: {
+            searchText: this.content
+          }
+        })
       },
-      showLoginDialog () {
+      showLoginDialog() {
         this.$store.dispatch('showLoginDialog')
       }
     }
   }
 </script>
+
 <style lang="sass">
 .ww-navbar
   background: #fff
@@ -65,6 +77,8 @@ import RegisterDialog from './register-dialog'
     .navbar-content
       margin: 0 10%
       height: 75px
+      overflow: hidden
+ 
       .title
         color: #000
         font-size: 30px
@@ -113,5 +127,5 @@ import RegisterDialog from './register-dialog'
         height: 90px
         float: right
         margin-top: 10px
-
+        
 </style>

@@ -35,7 +35,7 @@ export default{
     },
     // 跳转到购买页
     toBuy: function(movie, event) {
-      this.$router.push('/select/' + movie.id);
+      this.$router.push('/movies/' + movie.id + '/cinema');
       event.stopPropagation();
     }
   },

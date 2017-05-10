@@ -75,6 +75,7 @@ $score-color: #ffb400
     margin-top: 20px
     display: block
     text-align: left
+    t
   .movie-list
     .el-col
       margin-top: 15px
