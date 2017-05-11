@@ -1,7 +1,7 @@
 <template lang="jade">
   #movies-view
     el-radio-group(v-model="sortType")
-      el-radio(:label="1") 按热门排序
+      el-radio(:label="1") 按名字排序
       el-radio(:label="2") 按时间排序
       el-radio(:label="3") 按评价排序
     movielist(:data="sortMovies")
@@ -35,7 +35,9 @@ export default {
           this.sortMovies.sort(this.compareId);
           break;
         case 3:
+          console.log(this.sortMovies)
           this.sortMovies.sort(this.compareScore);
+          console.log(this.sortMovies)
           break;
         default:
           this.sortMovies.sort(this.compareTitle);
@@ -49,7 +51,7 @@ export default {
     },
     // 对电影的评分进行排序（降序）
     compareScore: function(a, b) {
-      return a.rating.average*2 > b.rating.average*2;
+      return a.rating.average > b.rating.average;
     },
     // 对电影的时间进行排序（没有时间？？？，用id大小来排吧）
     compareId: function(a, b) {
