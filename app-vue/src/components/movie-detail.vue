@@ -1,44 +1,34 @@
+<!-- 电影详情的简单介绍框，作为组件使用, 传入获得的电影内容 -->
 <template lang="jade">
 div
   #banner
     .container
-      img.poster(:src="movieDetail.images.large")
+      img.poster(:src="data.images.large")
       .info-box
-        h2 {{movieDetail.title}}
-        p {{movieDetail.original_title}}
+        h2 {{data.title}}
+        p {{data.original_title}}
         ul.list
           li
-            span(v-for="item in movieDetail.genres") {{item}}
+            span(v-for="item in data.genres") {{item}}
           li
-            span(v-for="(item,index) in movieDetail.countries") {{item}}
+            span(v-for="(item,index) in data.countries") {{item}}
           li 2017-04-14大陆上映
-        p.score 用户评分: {{movieDetail.rating.average * 2}}
-  #operation
-    button.buy-btn(type="button", name="buy") 购买
+        p.score 用户评分: {{data.rating.average * 2}}
+
 </template>
 
 <script>
 export default {
+  props: {
+    data: Object
+  },
   data: function() {
     return {}
-  },
-  computed: {
-    movieDetail () {
-      return this.$store.getters.movieDetail
-    }
-  },
-  mounted () {
-    let id = this.$route.params['id'];
-    this.$store.commit('MOVING_ID', {id});
-    this.$store.dispatch('getMovieDetail');
-  },
+  }
 }
 </script>
 
 <style lang="sass">
-
-$buy-btn-color: #df2d2d
-$buy-btn-color-active: #b12424
 
 #banner
   background-image: url('../assets/banner.png')
@@ -79,21 +69,4 @@ $buy-btn-color-active: #b12424
         bottom: 20px
         font-size: 15px
 
-#operation
-  margin-top: 30px
-  width: 1000px
-  margin-left: auto
-  margin-right: auto
-  text-align: left
-  .buy-btn
-    cursor: pointer
-    color: #fff
-    font-size: 18px
-    outline: none
-    border: none
-    background: $buy-btn-color
-    width: 100px
-    height: 40px
-    &:active
-      background: $buy-btn-color-active
 </style>

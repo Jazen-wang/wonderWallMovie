@@ -4,7 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import router from './router/index.js'
 import store from './store/index'
-import Carousel3d from 'vue-carousel-3d'
 import ElementUi from 'element-ui'
 import VueResource from 'vue-resource'
 // import store from './store'
@@ -13,7 +12,6 @@ require.ensure([], function () {
   require('element-ui/lib/theme-default/index.css')
 })
 
-Vue.use(Carousel3d)
 Vue.use(ElementUi)
 Vue.use(VueResource)
 Vue.config.productionTip = false

@@ -1,39 +1,31 @@
 package sysu.persistence.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
- * Created by shower on 17-4-14.
+ * Created by Shower on 2017/5/6 0006.
  */
 @Entity
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    public User() {
-        super();
-    }
-
-    public User(String name, String pwd) {
-        super();
-
-        this.name = name;
-        this.password = pwd;
-    }
-
+@Table(name = "user")
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @GeneratedValue
+    @Column(name = "id")
     private long id;
-
-    @Column(name = "NAME", unique = true, nullable = false)
-    private String name;
-
-    @Column(name = "PASSWORD", nullable = false)
+    @Column(nullable = false, unique = true)
+    private String username;
+    @JsonIgnore
     private String password;
+    private int gender = 0;// 0 --- female, 1 ---- male;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public User() {}
+
+    public User(String username, String password, int gender) {
+        this.username = username;
+        this.password = password;
+        this.gender = gender;
     }
 
     public long getId() {
@@ -44,12 +36,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -58,5 +50,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 }
