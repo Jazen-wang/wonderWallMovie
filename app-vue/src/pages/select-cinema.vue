@@ -2,16 +2,18 @@
 <template lang="jade">
 #select-cinema
   movieDetail(:data="movieDetail")
-  div 这里是好几个影院
-  el-button(type="danger" name="buy" @click="toSelectSeat(movieDetail, $event)") 选座购票
+  .container
+    selectTicketInfo
+    el-button(type="danger" name="buy" @click="toSelectSeat(movieDetail, $event)") 选座购票
 </template>
 
 <script>
 import movieDetail from '../components/movie-detail'
+import selectTicketInfo from '../components/select-ticket-info'
 
 export default {
   components: {
-    movieDetail
+    movieDetail, selectTicketInfo
   },
   data: function() {
     return {
@@ -36,3 +38,14 @@ export default {
 }
 
 </script>
+
+<style lang="sass">
+#select-cinema 
+  .container
+    position: relative
+    width: 1000px
+    margin-left: auto
+    margin-right: auto
+    text-align: left
+    padding-top: 40px
+</style>

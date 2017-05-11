@@ -48,7 +48,8 @@ export default {
     color: #fff
     .poster
       float: left
-      height: 330px
+      height: 334px
+      width: 240px
       border: 2px solid #fff
     .info-box
       margin-left: 20px

@@ -2,10 +2,11 @@
 <template lang="jade">
 #movie-detail-page
   movieDetail(:data="movieDetail")
-  #operation
-    el-button(type="danger" name="buy" @click="toBuy(movieDetail, $event)") 立即购票
-  div 待补充更多电影细节
-  div 这里是很长很长的电影细节
+  .container
+    #operation
+      el-button(type="danger" name="buy" @click="toBuy(movieDetail, $event)") 立即购票
+    div 待补充更多电影细节
+    div 这里是很长很长的电影细节
 </template>
 
 <script>
@@ -39,5 +40,12 @@ export default {
 </script>
 
 <style lang="sass">
-
+#movie-detail-page
+  .container
+    position: relative
+    width: 1000px
+    margin-left: auto
+    margin-right: auto
+    text-align: left
+    padding-top: 40px
 </style>

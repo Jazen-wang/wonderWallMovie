@@ -2,19 +2,16 @@
   #select-ticket-info
     .date.info-box
       .label 日期：
-      ul
-        li 今天
-        li 明天
+      ul(@click="selectDate")
+        li(v-for="date in allDate", :class="{'selected': selectedDate == date }") {{ date }}
     .area.info-box
       .label 区域：
-      ul
-        li 地铁附近
-        li 番禺区
+      ul(@click="selectArea")
+        li(v-for="area in allArea", :class="{'selected': selectedArea == area }") {{ area }}
     .cinema.info-box
       .label 影院：
-      ul
-        li UA影院
-        li 飞扬影院
+      ul(@click="selectCinema")
+        li(v-for="cinema in allCinema", :class="{'selected': selectedCinema == cinema }") {{ cinema }}
 </template>
 
 
@@ -22,9 +19,29 @@
 export default {
   data: function() {
     return {
-      date: ["今天", "明天"],
+      allDate: ["今天", "明天"],
       allArea: ["地铁附近", "番禺区"],
-      allCinema: ["UA影院", "飞扬影院"]
+      allCinema: ["UA影院", "飞扬影院"],
+      selectedDate: "今天",
+      selectedArea: "地铁附近",
+      selectedCinema: "UA影院"
+    }
+  },
+  methods: {
+    selectDate: function(event) {
+      if (event.target.tagName != "LI") return false;
+      let date = event.target.innerHTML;
+      this.selectedDate = date;
+    },
+    selectArea: function() {
+      if (event.target.tagName != "LI") return false;
+      let area = event.target.innerHTML;
+      this.selectedArea = area;
+    },
+    selectCinema: function() {
+      if (event.target.tagName != "LI") return false;
+      let cinema = event.target.innerHTML;
+      this.selectedCinema = cinema;
     }
   }
 }
@@ -32,18 +49,24 @@ export default {
 
 <style lang="sass">
 #select-ticket-info
-  width: 900px
   margin-left: auto
   margin-right: auto
-  margin-top: 50px
+  ul
+    display: inline-block
   li
     display: inline-block
     padding: 0 5px
+    margin: 0 2px
     cursor: pointer
+    border: 1px solid #fff
     &:hover
-      background-color: #2bb8aa
+      border: 1px solid #2bb8aa
       border-radius: 2px
-      color: #fff
+  .selected
+    border: 1px solid #2bb8aa
+    background-color: #2bb8aa
+    border-radius: 2px
+    color: #fff
   .info-box
     position: relative
     padding-top: 10px

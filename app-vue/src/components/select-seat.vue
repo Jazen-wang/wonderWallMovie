@@ -43,7 +43,8 @@ export default {
   },
   methods: {
     select: function(item, row, col) {
-      item.state = item.state == "selected" ? "selectable" : "selected";
+      if (item.state == "occupied") return false;
+      item.state = (item.state == "selected") ? "selectable" : "selected";
     }
   }
 
