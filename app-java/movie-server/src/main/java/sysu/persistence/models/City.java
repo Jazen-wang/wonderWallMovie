@@ -10,10 +10,11 @@ import java.util.List;
 @Entity
 @Table(name = "city")
 public class City {
+    private static long gen = 0;
+
     @Id
-    @GeneratedValue
     @Column(name = "id")
-    private long id;
+    private long id = gen++;
     private String name;
     private int code;
 

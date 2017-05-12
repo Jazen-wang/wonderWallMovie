@@ -36,13 +36,13 @@ public class MovieServerApplication {
 						   ScreeningRepository screeningRepository,
 						   DoubanService doubanService) {
 		return (String... evt) -> {
-//			City city1 = new City("广州", 1);
-//			cityRepository.save(city1);
-//			Cinema cinema1 = new Cinema("WonderWall", "小谷围", city1);
-//			cinemaRepository.save(cinema1);
-//			Hall hall1 = new Hall(1, cinema1);
-//			hallRepository.save(hall1);
-//
+			City city1 = new City("广州", 1);
+			cityRepository.save(city1);
+			Cinema cinema1 = new Cinema("WonderWall", "小谷围", city1);
+			cinemaRepository.save(cinema1);
+			Hall hall1 = new Hall(1, cinema1);
+			hallRepository.save(hall1);
+
 //			String latest = doubanService.getLatestMovies("广州").get();
 //			ObjectMapper objectMapper = new ObjectMapper();
 //			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

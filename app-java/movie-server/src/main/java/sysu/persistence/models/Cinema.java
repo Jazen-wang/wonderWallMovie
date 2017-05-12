@@ -10,14 +10,15 @@ import java.util.List;
 @Entity
 @Table(name = "cinema")
 public class Cinema {
+    private static long gen = 0;
+
     @Id
-    @GeneratedValue
     @Column(name = "id")
-    private long id;
+    private long id = gen++;
     private String name;
     private String address;
-    @ManyToOne
-    @JoinColumn(name = "city_id", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "city_id")
     private City city;
 
     public Cinema() {}
