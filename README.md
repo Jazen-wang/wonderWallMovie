@@ -12,6 +12,7 @@ npm install
 
 # 自动监听 localhost:8080
 npm run dev 或者 npm start
+建议用cnpm进行安装
 
 
 # 正式环境部署
@@ -34,10 +35,10 @@ mvn spring-boot:run
 
 ## 团队成员
 
-sysu - 王镇佳  
-sysu - 林毓  
-sysu - 孔维安  
-sysu - 吴其锋  
-sysu - 叶海涛  
-sysu - 白吟霜  
-sysu - 刘阳  
++ sysu - 王镇佳  
++ sysu - 林毓  
++ sysu - 孔维安  
++ sysu - 吴其锋  
++ sysu - 叶海涛  
++ sysu - 白吟霜  
++ sysu - 刘阳  
