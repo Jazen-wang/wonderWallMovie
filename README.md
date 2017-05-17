@@ -13,7 +13,7 @@ npm install
 # 自动监听 localhost:8080
 npm run dev 或者 npm start
 建议用cnpm进行安装
-
+sudo npm install -g cnpm
 
 # 正式环境部署
 npm run build
