@@ -1,6 +1,6 @@
 <template lang="jade">
 .index-page
-  el-carousel(height="400px")
+  el-carousel
     el-carousel-item(v-for="item in carousels" key="item.src")
       img(:src="item.src")
   .hot-showing
@@ -42,30 +42,28 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="sass">
-.carousel-3d-slider, .carousel-3d-slide
-  width: 800px !important
-  height: 300px !important
-
-.index-page
-  // max-width: 1000px
-  margin: 0 10%
-.hot-showing, .will-show
-  // padding-left: 80px
-  .title
-    color: #27a
-    font-size: 30px
-    text-align: left
-    margin-bottom: 20px
-    font-weight: bold
-.moviesList-container
-  margin-left: 0px !important
-</style>
-
 <style>
+
+.index-page {
+  margin: 0 10%;
+}
+.hot-showing, .will-show, .title {
+  color: #27a;
+  font-size: 30px;
+  text-align: left;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.moviesList-container {
+  margin-left: 0px !important;
+}
+.el-carousel img {
+  width: 100%;
+}
 
 .el-carousel {
   margin-bottom: 20px;
+  min-width: 500px;
 }
 
 .el-carousel-item {
@@ -74,7 +72,8 @@ export default {
   text-align: center;
 }
 
-.el-carousel img {
+.el-carousel__container {
+  min-width: 1100px;
 }
 
 </style>
