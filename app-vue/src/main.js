@@ -2,23 +2,25 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-// import Resource from 'vue-resource'
 import router from './router/index.js'
-import Carousel3d from 'vue-carousel-3d'
+import store from './store/index'
+import ElementUi from 'element-ui'
+import VueResource from 'vue-resource'
+// import store from './store'
+
 require.ensure([], function () {
   require('element-ui/lib/theme-default/index.css')
 })
 
-// Vue.use(Resource)
-// Vue.use(Iview)
-Vue.use(Carousel3d)
-
+Vue.use(ElementUi)
+Vue.use(VueResource)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
