@@ -27,7 +27,7 @@ export default {
   watch: {
     // 观察排序选项，对电影进行排序
     sortType: function() {
-      switch(this.sortType) {
+      switch(this.sortType) { 
         case 1:
           this.sortMovies.sort(this.compareTitle);
           break;
