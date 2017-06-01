@@ -49,8 +49,8 @@ public class DoubanService {
         if (!movieDetailMap.containsKey(movieId)) {
             String t = restTemplate.getForEntity(url + movie + movieId,
                     String.class).getBody();
-            //should check if t is valid
             System.out.println(t);
+            //should check if t is valid
             if (isValid(t)) movieDetailMap.put(movieId, t);
         }
         return Optional.ofNullable(movieDetailMap.getOrDefault(movieId, null));

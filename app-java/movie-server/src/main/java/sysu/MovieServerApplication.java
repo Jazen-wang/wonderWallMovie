@@ -10,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.session.data.mongo.JdkMongoSessionConverter;
+import org.springframework.session.data.mongo.config.annotation.web.http.EnableMongoHttpSession;
 import org.springframework.web.client.RestTemplate;
 import sysu.persistence.models.*;
 import sysu.persistence.repositories.*;
@@ -19,6 +21,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 @SpringBootApplication
+@EnableMongoHttpSession
 public class MovieServerApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(MovieServerApplication.class);
@@ -43,13 +46,13 @@ public class MovieServerApplication {
 			Hall hall1 = new Hall(1, cinema1);
 			hallRepository.save(hall1);
 
-//			String latest = doubanService.getLatestMovies("广州").get();
-//			ObjectMapper objectMapper = new ObjectMapper();
-//			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//			JsonNode subjects = objectMapper.readTree(latest).findPath("subjects");
-//			List<Movie> latestMovies = objectMapper.readValue(subjects.toString(),
-//					objectMapper.getTypeFactory().constructCollectionType(List.class, Movie.class));
-//			movieRepository.save(latestMovies);
+			String latest = doubanService.getLatestMovies("广州").get();
+			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+			JsonNode subjects = objectMapper.readTree(latest).findPath("subjects");
+			List<Movie> latestMovies = objectMapper.readValue(subjects.toString(),
+					objectMapper.getTypeFactory().constructCollectionType(List.class, Movie.class));
+			movieRepository.save(latestMovies);
 		};
 	}
 
@@ -66,6 +69,10 @@ public class MovieServerApplication {
 		return new ObjectMapper();
 	}
 
+	@Bean
+	public JdkMongoSessionConverter jdkMongoSessionConverter() {
+		return new JdkMongoSessionConverter();
+	}
 }
 
 
