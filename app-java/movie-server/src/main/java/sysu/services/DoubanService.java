@@ -49,11 +49,19 @@ public class DoubanService {
         if (!movieDetailMap.containsKey(movieId)) {
             String t = restTemplate.getForEntity(url + movie + movieId,
                     String.class).getBody();
-            System.out.println(t);
+            t = StringEscapeUtils.unescapeJava(t);
+//            System.out.println(t);
             //should check if t is valid
             if (isValid(t)) movieDetailMap.put(movieId, t);
         }
         return Optional.ofNullable(movieDetailMap.getOrDefault(movieId, null));
+    }
+
+    public String search(String key) {
+        String t = restTemplate.getForEntity(url + search + key,
+                String.class).getBody();
+        t = StringEscapeUtils.unescapeJava(t);
+        return t;
     }
 
     private boolean isValid(String s) throws IOException {
