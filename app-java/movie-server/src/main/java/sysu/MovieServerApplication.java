@@ -62,9 +62,9 @@ public class MovieServerApplication {
 			generator dataGenerate = new generator();
 			List<Screening> res = dataGenerate.screeningAllGenerate(latestMovies);
 			for (Screening s : res) {
-				System.out.println(s.getHall().getCinema().getCity());
-				System.out.println(s.getHall().getCinema());
-				System.out.println(s.getHall());
+				//System.out.println(s.getHall().getCinema().getCity());
+				//System.out.println(s.getHall().getCinema());
+				//System.out.println(s.getHall());
 				cityRepository.save(s.getHall().getCinema().getCity());
 				cinemaRepository.save(s.getHall().getCinema());
 				hallRepository.save(s.getHall());
@@ -126,9 +126,9 @@ class generator {
 		String[] cinemaName = {"万达影城", "星河电影院", "中影环球影城", "金逸影城"};
 		String[] addressName = {"新港东路1234号", "兴业大道3456号", "中山大道5678号", "黄埔东路78号"};
 		List<Screening> result = new  ArrayList<Screening>();
-		for (int city = 0; city < 1; city++) {
-			for (int cinema = 0; cinema < 1; cinema++) {
-				for (int h = 0; h < 1; h++) {
+		for (int city = 0; city < cinemaName.length; city++) {
+			for (int cinema = 0; cinema < cinemaName.length; cinema++) {
+				for (int h = 0; h < 3; h++) {
 					City c = new City(cityName[city], city);
 					Cinema ci = new Cinema(cinemaName[cinema], addressName[cinema], c);
 					Hall temp = new Hall(h, ci);

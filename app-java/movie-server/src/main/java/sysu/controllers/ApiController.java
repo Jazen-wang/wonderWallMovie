@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import sysu.services.DoubanServiceImpl;
+import sysu.services.InformationServiceImpl;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -18,6 +19,9 @@ import java.util.Optional;
 public class ApiController {
     @Autowired
     private DoubanServiceImpl doubanService;
+
+    @Autowired
+    private InformationServiceImpl informationService;
 
     @GetMapping("/latest")
     public ResponseEntity<?> getLatestMovies() throws IOException {
@@ -35,5 +39,22 @@ public class ApiController {
     public ResponseEntity<?> getAllMovies() throws IOException {
         Optional<String> allMovies = doubanService.getAllMovies();
         return new ResponseEntity<>(allMovies.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/movies/{id}/cinema")
+    public ResponseEntity<?> getCinemasHaveMovie(@PathVariable long id) throws IOException {
+        Optional<String> cinemas = informationService.getCinemasHasMovie(id);
+        return new ResponseEntity<Object>(cinemas.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/movies/{movie_id}/cinema/{cinema_id}")
+    public ResponseEntity<?> getHallByMovieAndCinema(@PathVariable long movie_id, @PathVariable long cinema_id) throws IOException {
+        Optional<String> halls = informationService.getHallByMovieAndCinema(movie_id, cinema_id);
+        return new ResponseEntity<Object>(halls.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/movies/{movie_id}/cinema/{cinema_id}/{hall_id}")
+    public ResponseEntity<?> getSeats(@PathVariable long movie_id, @PathVariable long cinema_id, @PathVariable long hall_id) throws IOException {
+        return null;
     }
 }
