@@ -11,6 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.session.data.mongo.JdkMongoSessionConverter;
+import org.springframework.session.data.mongo.config.annotation.web.http.EnableMongoHttpSession;
 import org.springframework.web.client.RestTemplate;
 import sysu.persistence.models.*;
 import sysu.persistence.repositories.*;
@@ -23,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-
+@EnableMongoHttpSession
 @SpringBootApplication
 public class MovieServerApplication {
 
@@ -86,6 +88,13 @@ public class MovieServerApplication {
 	ObjectMapper objectMapper() {
 		return new ObjectMapper();
 	}
+
+	@Bean
+	public JdkMongoSessionConverter jdkMongoSessionConverter() {
+		return new JdkMongoSessionConverter();
+	}
+
+
 }
 
 class generator {
