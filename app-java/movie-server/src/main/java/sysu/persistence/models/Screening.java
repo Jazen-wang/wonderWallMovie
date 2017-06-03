@@ -71,4 +71,15 @@ public class Screening {
     public void setMovie(Movie movie) {
         this.movie = movie;
     }
+
+    @Override
+    public String toString() {
+        return "Screening{" +
+                "id=" + id +
+                ", start=" + start +
+                ", end=" + end +
+                ", hall=" + hall +
+                ", movie=" + movie +
+                '}';
+    }
 }
