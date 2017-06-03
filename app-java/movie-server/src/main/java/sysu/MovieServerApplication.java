@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import sysu.persistence.models.*;
 import sysu.persistence.repositories.*;
 import sysu.services.DoubanService;
+import sysu.services.DoubanServiceImpl;
 
 import java.nio.charset.Charset;
 import java.util.List;
