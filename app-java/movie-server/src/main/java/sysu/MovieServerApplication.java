@@ -86,7 +86,7 @@ public class MovieServerApplication {
 }
 
 class generator {
-    public generator() {}
+    public generator() {} //constructor
 
 	public Movie movieGenerate(List<Movie> latestMovies) {
     	int len = latestMovies.size();
