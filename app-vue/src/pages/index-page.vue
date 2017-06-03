@@ -18,7 +18,7 @@ let icarousels = [
   {src: require('../assets/movie-2.jpg')},
   {src: require('../assets/movie-3.jpg')},
 ]
-
+ 
 export default {
   data: function() {
     return {

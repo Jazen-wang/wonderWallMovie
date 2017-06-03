@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import sysu.services.DoubanService;
+import sysu.services.DoubanServiceImpl;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @RestController
 public class ApiController {
     @Autowired
-    private DoubanService doubanService;
+    private DoubanServiceImpl doubanService;
 
     @GetMapping("/latest")
     public ResponseEntity<?> getLatestMovies() throws IOException {
@@ -29,5 +29,11 @@ public class ApiController {
     public ResponseEntity<?> getMovieDetail(@PathVariable long id) throws IOException {
         Optional<String> detail = doubanService.getMovieDetail(id);
         return new ResponseEntity<>(detail.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/movies")
+    public ResponseEntity<?> getAllMovies() throws IOException {
+        Optional<String> allMovies = doubanService.getAllMovies();
+        return new ResponseEntity<>(allMovies.get(), HttpStatus.OK);
     }
 }
