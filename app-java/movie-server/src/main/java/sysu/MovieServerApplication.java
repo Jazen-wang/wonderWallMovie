@@ -70,6 +70,7 @@ public class MovieServerApplication {
 				screeningRepository.save(s);
 			}
 
+
 //			List<Screening> test = screeningRepository.findAll();
 //			Screening temp = test.get(0);
 //			System.out.println(temp.getStart().toString());
