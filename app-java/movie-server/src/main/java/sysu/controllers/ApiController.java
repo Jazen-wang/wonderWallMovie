@@ -30,4 +30,10 @@ public class ApiController {
         Optional<String> detail = doubanService.getMovieDetail(id);
         return new ResponseEntity<>(detail.get(), HttpStatus.OK);
     }
+
+    @GetMapping("/api/movies")
+    public ResponseEntity<?> getAllMovies() throws IOException {
+        Optional<String> allMovies = doubanService.getAllMovies();
+        return new ResponseEntity<>(allMovies.get(), HttpStatus.OK);
+    }
 }

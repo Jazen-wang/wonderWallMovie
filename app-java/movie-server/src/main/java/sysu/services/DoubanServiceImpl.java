@@ -25,6 +25,7 @@ public class DoubanServiceImpl implements DoubanService {
     private final String latest = "/v2/movie/in_theaters?city=";
     private final String movie = "/v2/movie/subject/";
     private final String search = "/v2/movie/search?q=";
+    private final String allMovie = "/v2/movie/top250";
 
     private Map<Long, String> movieDetailMap = new HashMap<>();
     private Map<String, String> latestMoviesMap = new HashMap<>();
@@ -55,6 +56,12 @@ public class DoubanServiceImpl implements DoubanService {
             if (isValid(t)) movieDetailMap.put(movieId, t);
         }
         return Optional.ofNullable(movieDetailMap.getOrDefault(movieId, null));
+    }
+
+    public Optional<String> getAllMovies() throws IOException {
+        String t = restTemplate.getForEntity(url + allMovie, String.class).getBody();
+        t = StringEscapeUtils.unescapeJava(t);
+        return Optional.ofNullable(t);
     }
 
     public String search(String key) {
