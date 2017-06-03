@@ -65,6 +65,9 @@ public class MovieServerApplication {
 	ObjectMapper objectMapper() {
 		return new ObjectMapper();
 	}
+}
+
+class generator {
 
 }
 
