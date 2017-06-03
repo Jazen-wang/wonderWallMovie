@@ -15,8 +15,10 @@ import sysu.persistence.models.*;
 import sysu.persistence.repositories.*;
 import sysu.services.DoubanService;
 
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Random;
 
 @SpringBootApplication
 public class MovieServerApplication {
@@ -68,6 +70,13 @@ public class MovieServerApplication {
 }
 
 class generator {
+    public City cityGenerate() {
+        String[] cityName = {"广州", "深圳", "杭州", "上海", "北京"};
+        Random r = new Random();
+        int code = r.nextInt(5);
+        return new City(cityName[code], code);
+    }
+
 
 }
 
