@@ -10,5 +10,6 @@ public interface InformationService {
     Optional<String> getCinemasHasMovie(long id) throws IOException;
     Optional<String> getHallByMovieAndCinema(long movie_id, long cinema_id) throws IOException;
     Optional<String> getSeats(long movie_id, long cinema_id, long hall_id) throws IOException;
+    Optional<String> generateOrder(long movie_id, long cinema_id, long hall_id, long seat_id) throws IOException;
 
 }

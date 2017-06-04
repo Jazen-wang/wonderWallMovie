@@ -3,9 +3,7 @@ package sysu.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sysu.services.DoubanServiceImpl;
 import sysu.services.InformationServiceImpl;
 
@@ -56,5 +54,11 @@ public class ApiController {
     @GetMapping("/api/movies/{movie_id}/cinema/{cinema_id}/{hall_id}")
     public ResponseEntity<?> getSeats(@PathVariable long movie_id, @PathVariable long cinema_id, @PathVariable long hall_id) throws IOException {
         return null;
+    }
+
+    @GetMapping("/api/movies/{movie_id}/cinema/{cinema_id}/hall/{seat_id}")
+    @RequestMapping(method = RequestMethod.POST)
+    public void generateOrder(@PathVariable long movie_id, @PathVariable long cinema_id, @PathVariable long hall_id, @PathVariable long seat_id) {
+
     }
 }

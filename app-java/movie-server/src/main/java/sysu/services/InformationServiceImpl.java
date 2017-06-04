@@ -23,9 +23,6 @@ import java.util.Optional;
 public class InformationServiceImpl implements InformationService{
 
     @Autowired
-    private HallRepository hallRepository;
-
-    @Autowired
     private ScreeningRepository screeningRepository;
 
     @Override
@@ -52,6 +49,11 @@ public class InformationServiceImpl implements InformationService{
 
     @Override
     public Optional<String> getSeats(long movie_id, long cinema_id, long hall_id) throws IOException {
+        return null;
+    }
+
+    @Override
+    public Optional<String> generateOrder(long movie_id, long cinema_id, long hall_id, long seat_id) throws IOException {
         return null;
     }
 }
