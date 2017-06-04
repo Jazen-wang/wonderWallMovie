@@ -70,9 +70,15 @@ public class MovieServerApplication {
 				hallRepository.save(s.getHall());
 				movieRepository.save(s.getMovie());
 				screeningRepository.save(s);
+				for (int i = 1; i < 5; i++)
+					for (int j = 1; j < 5; j++)
+						seatRepository.save(new Seat(i, j, s));
 			}
 
-			List<Screening> test = screeningRepository.findAll();
+
+//			List<Screening> test = screeningRepository.findAll();
+//			Screening temp = test.get(0);
+//			System.out.println(temp.getStart().toString());
 		};
 	}
 
@@ -93,8 +99,6 @@ public class MovieServerApplication {
 	public JdkMongoSessionConverter jdkMongoSessionConverter() {
 		return new JdkMongoSessionConverter();
 	}
-
-
 }
 
 class generator {
