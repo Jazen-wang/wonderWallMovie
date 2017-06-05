@@ -9,10 +9,10 @@ div
         p {{data.original_title}}
         ul.list
           li
-            span(v-for="item in data.genres") {{item}}
+            span(v-for="item in data.genres") {{item}} 
           li
             span(v-for="(item,index) in data.countries") {{item}}
-          li 2017-04-14大陆上映
+          li 2017-06-14 大陆上映
         p.score 用户评分: {{data.rating.average * 2}}
 
 </template>

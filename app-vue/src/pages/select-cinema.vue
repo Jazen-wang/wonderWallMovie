@@ -2,8 +2,9 @@
 <template lang="jade">
 #select-cinema
   movieDetail(:data="movieDetail")
-  div 这里是好几个影院
-  el-button(type="danger" name="buy" @click="toSelectSeat(movieDetail, $event)") 选座购票
+  #select-btn
+    el-button(type="danger" name="buy" @click="toSelectSeat(movieDetail, $event)") 选座购票
+  .cinema-detail 这里是好几个影院
 </template>
 
 <script>
@@ -36,3 +37,7 @@ export default {
 }
 
 </script>
+
+<style lang="sass">
+@import '../styles/select-cinema.sass';
+</style>
