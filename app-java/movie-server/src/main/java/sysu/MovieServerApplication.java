@@ -100,12 +100,13 @@ public class MovieServerApplication {
 
 class Generator {
     public Generator() {} //constructor
+	static int movieIndex = 0;
 
 	public Movie movieGenerate(List<Movie> latestMovies) {
-    	int len = latestMovies.size();
-		Random r = new Random();
-		int code = r.nextInt(len);
-		return latestMovies.get(code);
+		int len = latestMovies.size();
+		Movie m = latestMovies.get(movieIndex);
+		movieIndex = (movieIndex + 1) % len;
+		return m;
 	}
 
 	public List<Screening> screeningHallGenerate(Hall h, List<Movie> latestMovies) {
