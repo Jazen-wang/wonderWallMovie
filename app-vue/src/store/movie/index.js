@@ -12,6 +12,7 @@ const state = {
   id: '', // 电影ID
   loginDialogVisible: false, // 登陆对话框
   registerDialogVisible: false, // 注册对话框
+  user: null, // 登录用户
 }
 
 export default {

@@ -23,4 +23,7 @@ export const mutations = {
   [types.REGISTER_DIALOG_VISIBLE] (state, {visible}) {
     state.registerDialogVisible = visible
   },
+  [types.LOGIN_USER] (state, {user}) {
+    state.user = user;
+  }
 }

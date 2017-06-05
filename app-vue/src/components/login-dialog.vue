@@ -11,7 +11,7 @@ el-dialog(title="登录", v-model="loginDialogVisible", @close="cancel", size="t
       el-button(type="text" @click="register") 注册
   .dialog-footer(slot="footer")
     el-button(@click="cancel") 取消
-    el-button(type="primary", @click="confirm") 登录
+    el-button(type="primary", @click="confirm", :loading="loading") {{!loading? '登录':'登录中'}}
 </template>
 
 <script>
@@ -23,6 +23,7 @@ el-dialog(title="登录", v-model="loginDialogVisible", @close="cancel", size="t
           password: '',
           remember: false,
         },
+        loading: false,
       }
     },
     computed: {
@@ -35,7 +36,22 @@ el-dialog(title="登录", v-model="loginDialogVisible", @close="cancel", size="t
         this.$store.dispatch('hideLoginDialog');
       },
       confirm: function() {
-        this.$store.dispatch('hideLoginDialog');
+        this.loading = true;
+        let user = {
+          username: this.username,
+          password: this.password
+        }
+        
+        this.$http.post('api/login', user)
+          .then(res => {
+            this.$store.dispatch('login', user);
+            this.loading = false;
+            this.$store.dispatch('hideLoginDialog');
+            this.$message({
+              message: '登陆成功',
+              type: 'success'
+            });
+          })
       },
       register: function() {
         this.cancel();

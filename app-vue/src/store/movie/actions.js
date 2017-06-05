@@ -44,5 +44,11 @@ export const actions = {
    */
   hideRegisterDialog ({commit, state}) {
     commit('REGISTER_DIALOG_VISIBLE', {visible: false})
+  },
+  /**
+   * 登录
+   */
+  login({commit, state}, user) {
+    commit('LOGIN_USER', {user: user});
   }
 }

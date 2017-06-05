@@ -11,7 +11,7 @@ el-dialog(title="注册", v-model="registerDialogVisible", @close="cancel", size
       el-button(type="text" @click="login") 登录
   .dialog-footer(slot="footer")
     el-button(@click="cancel") 取消
-    el-button(type="primary", @click="confirm") 注册
+    el-button(type="primary", @click="confirm", :load='loading') {{!loading ? '注册' : '请稍等'}}
 </template>
 
 <script>
@@ -23,6 +23,7 @@ el-dialog(title="注册", v-model="registerDialogVisible", @close="cancel", size
           password: '',
           repassword: ''
         },
+        loading: false
       }
     },
     computed: {
@@ -35,7 +36,21 @@ el-dialog(title="注册", v-model="registerDialogVisible", @close="cancel", size
         this.$store.dispatch('hideRegisterDialog')
       },
       confirm: function() {
-        this.$store.dispatch('hideRegisterDialog')
+        this.loading = true;
+        let user = {
+          username: this.username,
+          password: this.password
+        }
+        this.$http.post('api/register', user)
+          .then(res => { 
+            this.$store.dispatch('login', user);
+            this.loading = false;
+            this.$store.dispatch('hideRegisterDialog');
+            this.$message({
+              message: '注册成功，现已登录',
+              type: 'success'
+            });
+          })
       },
       login: function() {
         this.cancel();
