@@ -49,4 +49,12 @@ public class City {
         this.code = code;
     }
 
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code=" + code +
+                '}';
+    }
 }

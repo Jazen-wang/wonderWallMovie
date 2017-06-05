@@ -49,4 +49,18 @@ public class Hall {
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
     }
+
+    @Override
+    public String toString() {
+        return "Hall{" +
+                "id=" + id +
+                ", number=" + number +
+                ", cinema=" + cinema +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.number == ((Hall)obj).getNumber() && this.cinema.equals(((Hall)obj).getCinema());
+    }
 }
