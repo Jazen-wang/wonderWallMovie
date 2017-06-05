@@ -27,6 +27,7 @@ public class InformationServiceImpl implements InformationService{
         for (Screening screening : screenings) {
             cinemas.add(screening.getHall().getCinema());
         }
+        System.out.println(cinemas);
         return cinemas;
     }
 
