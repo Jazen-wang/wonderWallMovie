@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface DoubanService {
     Optional<String> getLatestMovies(String city) throws IOException;
     Optional<String> getMovieDetail(long movieId) throws IOException;
-    Optional<String> getAllMovies() throws IOException;
+    String getAllMovies() throws IOException;
     String search(String key);
 }

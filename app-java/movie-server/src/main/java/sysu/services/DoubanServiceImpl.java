@@ -1,17 +1,13 @@
 package sysu.services;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -29,6 +25,8 @@ public class DoubanServiceImpl implements DoubanService {
 
     private Map<Long, String> movieDetailMap = new HashMap<>();
     private Map<String, String> latestMoviesMap = new HashMap<>();
+
+    private String top250 = null;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -58,10 +56,11 @@ public class DoubanServiceImpl implements DoubanService {
         return Optional.ofNullable(movieDetailMap.getOrDefault(movieId, null));
     }
 
-    public Optional<String> getAllMovies() throws IOException {
-        String t = restTemplate.getForEntity(url + allMovie, String.class).getBody();
-        t = StringEscapeUtils.unescapeJava(t);
-        return Optional.ofNullable(t);
+    public String getAllMovies() throws IOException {
+        if (top250 != null) return top250;
+        top250 = restTemplate.getForEntity(url + allMovie, String.class).getBody();
+        top250 = StringEscapeUtils.unescapeJava(top250);
+        return top250;
     }
 
     public String search(String key) {
