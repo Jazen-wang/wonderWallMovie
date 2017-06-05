@@ -53,6 +53,6 @@ export default {
 }
 </script>
 
-<style lang="sass">
-@import '../styles/movie-detail.sass';
+<style lang="sass" scoped>
+@import '../styles/pages/movie-detail-page.sass';
 </style>

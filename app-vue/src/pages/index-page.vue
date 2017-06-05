@@ -42,38 +42,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-
-.index-page {
-  margin: 0 10%;
-}
-.hot-showing, .will-show, .title {
-  color: #27a;
-  font-size: 30px;
-  text-align: left;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-.moviesList-container {
-  margin-left: 0px !important;
-}
-.el-carousel img {
-  width: 100%;
-}
-
-.el-carousel {
-  margin-bottom: 20px;
-  min-width: 500px;
-}
-
-.el-carousel-item {
-  display: table-cell; //主要是这个属性
-  vertical-align: middle;
-  text-align: center;
-}
-
-.el-carousel__container {
-  min-width: 1100px;
-}
-
+<style lang="sass" scoped>
+@import "../styles/pages/index-page.sass"
 </style>

@@ -28,45 +28,6 @@ export default {
 }
 </script>
 
-<style lang="sass">
-
-#banner
-  background-image: url('../assets/banner.png')
-  background-position: center
-  background-size: cover
-  background-repeat: no-repeat
-  width: 100%
-  height: 400px
-  .container
-    position: relative
-    width: 1000px
-    height: 360px
-    margin-left: auto
-    margin-right: auto
-    text-align: left
-    padding-top: 40px
-    color: #fff
-    .poster
-      float: left
-      height: 330px
-      border: 2px solid #fff
-    .info-box
-      margin-left: 20px
-      float: left
-      h2
-        font-size: 28px
-        margin: 0
-      p
-        font-size: 22px
-        margin-top: 0
-      .list
-        font-size: 15px
-        list-style: none
-        li
-          margin: 4px 0
-      .score
-        position: absolute
-        bottom: 20px
-        font-size: 15px
-
+<style lang="sass" scoped>
+@import "../styles/components/movie-detail.sass"
 </style>

@@ -46,37 +46,6 @@ export default {
 }
 </script>
 
-<style lang="sass">
-#select-seat
-  margin-top: 40px
-  .tips
-    img
-      height: 30px
-      vertical-align: middle
-    span
-      font-size: 14px
-      margin-right: 20px
-  .select-group
-    margin-top: 30px
-    img
-      margin: 0 10px
-      cursor: pointer
-      height: 30px
-    .col
-      display: inline-block
-    .seat
-      display: inline-block
-      width: 30px
-      height: 30px
-      background-size: contain
-      cursor: pointer
-      margin: 0 5px
-    .selectable
-      background-image: url('../assets/seat-empty.svg')
-      &:hover
-        background-image: url('../assets/seat-hover.svg')
-    .occupied
-      background-image: url('../assets/seat-occupied.svg')
-    .selected
-      background-image: url('../assets/seat-selected.svg')
+<style lang="sass" scoped>
+@import "../styles/components/select-seat.sass"
 </style>

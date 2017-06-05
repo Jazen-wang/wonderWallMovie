@@ -4,7 +4,7 @@
   movieDetail(:data="movieDetail")
   #select-btn
     el-button(type="danger" name="buy" @click="toSelectSeat(movieDetail, $event)") 选座购票
-  .cinema-detail 这里是好几个影院
+  .cinema-detail 这里是好几个影院 test
 </template>
 
 <script>
@@ -38,6 +38,6 @@ export default {
 
 </script>
 
-<style lang="sass">
-@import '../styles/select-cinema.sass';
+<style lang="sass" scoped>
+@import '../styles/pages/select-cinema.sass';
 </style>
