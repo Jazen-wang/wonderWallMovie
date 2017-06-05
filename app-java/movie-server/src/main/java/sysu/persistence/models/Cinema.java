@@ -1,8 +1,8 @@
 package sysu.persistence.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Shower on 2017/5/6 0006.
@@ -19,6 +19,7 @@ public class Cinema {
     private String address;
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "city_id")
+    @JsonInclude
     private City city;
 
     public Cinema() {}
@@ -69,5 +70,11 @@ public class Cinema {
                 ", address='" + address + '\'' +
                 ", city=" + city +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.name.equals(((Cinema)obj).getName()) && this.address.equals(((Cinema)obj).getAddress())
+                && this.city.getName().equals(((Cinema)obj).getCity().getName());
     }
 }

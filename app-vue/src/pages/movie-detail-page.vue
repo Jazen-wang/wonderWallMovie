@@ -4,8 +4,23 @@
   movieDetail(:data="movieDetail")
   #operation
     el-button(type="danger" name="buy" @click="toBuy(movieDetail, $event)") 立即购票
-  div 待补充更多电影细节
-  div 这里是很长很长的电影细节
+  .movieSum 
+    .title 《{{movieDetail.title}}》电影介绍
+    .summary 
+      .subTitle 剧情简介
+      | {{movieDetail.summary}}
+    .players
+      .subTitle 演职人员
+      .player(v-for="item in movieDetail.directors" )
+        a(:href="item.alt" target="_blank")
+          img(:src="item.avatars.small")
+          .name {{item.name}} (导演)
+      .player(v-for="item in movieDetail.casts")
+        a(:href="item.alt" target="_blank")
+          img(:src="item.avatars.small")
+          .name {{item.name}} (演员)
+
+
 </template>
 
 <script>
@@ -38,6 +53,6 @@ export default {
 }
 </script>
 
-<style lang="sass">
-
+<style lang="sass" scoped>
+@import '../styles/pages/movie-detail-page.sass';
 </style>

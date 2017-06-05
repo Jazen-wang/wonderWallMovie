@@ -58,4 +58,9 @@ public class Hall {
                 ", cinema=" + cinema +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.number == ((Hall)obj).getNumber() && this.cinema.equals(((Hall)obj).getCinema());
+    }
 }
