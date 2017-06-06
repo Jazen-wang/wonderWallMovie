@@ -14,5 +14,11 @@ export const getters = {
   },
   registerDialogVisible: state => {
     return state.registerDialogVisible
+  },
+  selectSeatDialogVisible: state => {
+    return state.selectSeatDialogVisible
+  },
+  selectedSession: state => {
+    return state.selectedSession
   }
 }

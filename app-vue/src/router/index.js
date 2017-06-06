@@ -32,7 +32,7 @@ var router = new Router({
       component: movieDetailPage
     },
     {
-      path: '/select/:id',
+      path: '/select/',
       name: 'selectSeats',
       component: selectSeats
     },

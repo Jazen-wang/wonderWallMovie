@@ -1,20 +1,27 @@
 <template lang="jade">
-#select-seat
-  .tips
-    img(src="../assets/seat-empty.svg", alt="可选")
-    span 可选座位
-    img(src="../assets/seat-occupied.svg", alt="已售")
-    span 已售座位
-    img(src="../assets/seat-selected.svg", alt="已选")
-    span 已选座位
-  .select-group
-    .row(v-for="(row, rowIndex) in seat")
-      .col(v-for="(item, colIndex) in row", @click="select(item, rowIndex, colIndex)")
-        .seat.selected(v-if="item.state == 'selected'")
-        .seat.occupied(v-else-if="item.state == 'occupied'")
-        .seat.selectable(v-else-if="item.state == 'selectable'")
-
+el-dialog(title="选座", v-model="visible", @close="cancel", size="small")
+  #select-seat
+    .session-info
+      span 时间：{{ selectedSession.time }}
+      span 语言：{{ selectedSession.language }}
+      span 放映厅：{{ selectedSession.address }}
+      span 单张票价：{{ selectedSession.price }}
+    .tips
+      img(src="../assets/seat-empty.svg", alt="可选")
+      span 可选座位
+      img(src="../assets/seat-occupied.svg", alt="已售")
+      span 已售座位
+      img(src="../assets/seat-selected.svg", alt="已选")
+      span 已选座位
+    .select-group
+      .row(v-for="(row, rowIndex) in seat")
+        .col(v-for="(item, colIndex) in row", @click="select(item, rowIndex, colIndex)")
+          .seat.selected(v-if="item.state == 'selected'")
+          .seat.occupied(v-else-if="item.state == 'occupied'")
+          .seat.selectable(v-else-if="item.state == 'selectable'")
+    el-button(type="success", @click="buy") 下单
 </template>
+
 
 <script>
 
@@ -45,16 +52,40 @@ export default {
     select: function(item, row, col) {
       if (item.state == "occupied") return false;
       item.state = (item.state == "selected") ? "selectable" : "selected";
+    },
+    cancel: function() {
+      this.$store.dispatch('hideSelectSeatDialog');
+    },
+    buy: function() {
+
     }
-  }
+  },
+  computed: {
+    visible () {
+      return this.$store.getters.selectSeatDialogVisible;
+    },
+    selectedSession () {
+      if (this.$store.getters.selectedSession) {
+        return this.$store.getters.selectedSession;
+      } else {
+        return {
+          time: "",
+          language: "",
+          address: "",
+          price: 0
+        }
+      }
+    }
+  },
 
 }
 </script>
 
 <style lang="sass">
 #select-seat
-  margin-top: 40px
   text-align: center
+  .session-info span
+    margin: 0 5px
   .tips
     img
       height: 30px

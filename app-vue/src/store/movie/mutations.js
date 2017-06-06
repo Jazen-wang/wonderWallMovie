@@ -23,6 +23,10 @@ export const mutations = {
   [types.REGISTER_DIALOG_VISIBLE] (state, {visible}) {
     state.registerDialogVisible = visible
   },
+  [types.SELECT_SEAT_DIALOG_VISIBLE] (state, {visible, session}) {
+    state.selectSeatDialogVisible = visible;
+    state.selectedSession = session;
+  },
   [types.LOGIN_USER] (state, {user}) {
     state.user = user;
   }
