@@ -1,5 +1,5 @@
 <template lang="jade">
-el-dialog(title="选座", v-model="visible", @close="cancel", size="small")
+el-dialog(title="选座", v-model="visible", @close="cancel", size="small", :lock-scroll="false")
   #select-seat
     .session-info
       span 时间：{{ selectedSession.time }}
@@ -19,7 +19,11 @@ el-dialog(title="选座", v-model="visible", @close="cancel", size="small")
           .seat.selected(v-if="item.state == 'selected'")
           .seat.occupied(v-else-if="item.state == 'occupied'")
           .seat.selectable(v-else-if="item.state == 'selectable'")
-    el-button(type="success", @click="buy") 下单
+    div.footer
+      div 总价：
+        span.total-price {{ totalPrice }} ¥
+          
+      el-button.buy-btn(type="success", @click="buy") 下单
 </template>
 
 
@@ -46,12 +50,19 @@ export default {
   data: function() {
     return {
       seat: initSeat,
+      selectCount: 0,
     }
   },
   methods: {
     select: function(item, row, col) {
       if (item.state == "occupied") return false;
-      item.state = (item.state == "selected") ? "selectable" : "selected";
+      if (item.state == "selected") {
+        item.state = 'selectable';
+        this.selectCount -= 1;
+      } else if (item.state == "selectable") {
+        item.state = 'selected';
+        this.selectCount += 1;
+      }
     },
     cancel: function() {
       this.$store.dispatch('hideSelectSeatDialog');
@@ -75,6 +86,9 @@ export default {
           price: 0
         }
       }
+    },
+    totalPrice () {
+      return this.selectedSession.price * this.selectCount;
     }
   },
 
@@ -84,6 +98,9 @@ export default {
 <style lang="sass">
 #select-seat
   text-align: center
+  overflow: auto;
+  .session-info
+    margin: 10px 0
   .session-info span
     margin: 0 5px
   .tips
@@ -116,4 +133,13 @@ export default {
       background-image: url('../assets/seat-occupied.svg')
     .selected
       background-image: url('../assets/seat-selected.svg')
+  .footer
+    text-align: right;
+  .footer div
+    display: inline-block
+  .total-price
+    line-height: 36px
+    color: #f7ba2a
+  .buy-btn
+    margin-left: 20px
 </style>

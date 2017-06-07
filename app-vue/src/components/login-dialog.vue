@@ -1,5 +1,5 @@
 <template lang="jade">
-el-dialog(title="登录", v-model="loginDialogVisible", @close="cancel", size="tiny")
+el-dialog(title="登录", v-model="loginDialogVisible", @close="cancel", size="tiny", :lock-scroll="false")
   el-form(:model="form")
     el-form-item(label="用户名")
       el-input(v-model="form.username", auto-complete="off", placeholder="8-16位字母数字组合")
