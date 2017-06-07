@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import sysu.persistence.models.Cinema;
 import sysu.persistence.models.Hall;
 import sysu.persistence.models.Screening;
+import sysu.persistence.models.Seat;
 import sysu.persistence.repositories.ScreeningRepository;
+import sysu.persistence.repositories.SeatRepository;
 
 import java.io.IOException;
 
@@ -19,6 +21,9 @@ public class InformationServiceImpl implements InformationService{
 
     @Autowired
     private ScreeningRepository screeningRepository;
+
+    @Autowired
+    private SeatRepository seatRepository;
 
     @Override
     public Set<Cinema> getCinemasHasMovie(long id) throws IOException {
@@ -44,12 +49,9 @@ public class InformationServiceImpl implements InformationService{
     }
 
     @Override
-    public Optional<String> getSeats(long movie_id, long cinema_id, long hall_id) throws IOException {
-        return null;
-    }
-
-    @Override
-    public Optional<String> generateOrder(long movie_id, long cinema_id, long hall_id, long seat_id) throws IOException {
-        return null;
+    public List<Seat> getSeats(long hall_id, long movie_id) throws IOException {
+        List<Seat> seats = seatRepository
+            .findByScreening_Hall_IdAndScreening_Movie_Id(hall_id, movie_id);
+        return seats;
     }
 }

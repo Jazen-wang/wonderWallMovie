@@ -1,6 +1,8 @@
 package sysu.services;
 
+import sysu.eneties.OrderForm;
 import sysu.persistence.models.User;
+import sysu.persistence.models.UserOrder;
 
 import java.util.Optional;
 
@@ -13,4 +15,6 @@ public interface UserService {
     Optional<User> getUserByName(String name);
     Optional<User> getUserByNameAndPassword(String name, String password);
     boolean isUsernamePresent(String name);
+
+    UserOrder generateOrder(long userId, OrderForm orderForm);
 }

@@ -5,11 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sysu.eneties.Message;
+import sysu.eneties.OrderForm;
+import sysu.exceptions.NotLogin;
 import sysu.persistence.models.Cinema;
 import sysu.persistence.models.Hall;
+import sysu.persistence.models.Seat;
 import sysu.services.DoubanServiceImpl;
 import sysu.services.InformationServiceImpl;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -57,14 +61,9 @@ public class ApiController {
         return new ResponseEntity<>(halls, HttpStatus.OK);
     }
 
-    @GetMapping("/movies/{movie_id}/cinema/{cinema_id}/{hall_id}")
-    public ResponseEntity<?> getSeats(@PathVariable long movie_id, @PathVariable long cinema_id, @PathVariable long hall_id) throws IOException {
-        return null;
-    }
-
-    @GetMapping("/movies/{movie_id}/cinema/{cinema_id}/hall/{seat_id}")
-    @RequestMapping(method = RequestMethod.POST)
-    public void generateOrder(@PathVariable long movie_id, @PathVariable long cinema_id, @PathVariable long hall_id, @PathVariable long seat_id) {
-
+    @GetMapping("/movies/{movie_id}/cinema/{cinema_id}/hall/{hall_id}")
+    public ResponseEntity<?> getSeats(@PathVariable long movie_id, @PathVariable long hall_id) throws IOException {
+        List<Seat> seats = informationService.getSeats(hall_id, movie_id);
+        return new ResponseEntity<Object>(seats, HttpStatus.OK);
     }
 }

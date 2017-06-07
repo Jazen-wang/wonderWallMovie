@@ -5,11 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sysu.eneties.OrderDTO;
+import sysu.eneties.OrderForm;
 import sysu.eneties.UserForm;
 import sysu.exceptions.LoginError;
 import sysu.exceptions.NotLogin;
 import sysu.exceptions.UsernameExists;
 import sysu.persistence.models.User;
+import sysu.persistence.models.UserOrder;
 import sysu.services.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -57,5 +60,19 @@ public class UserController {
         if (userId == null) throw new NotLogin();
         Optional<User> u = userService.getUserById((long) userId);
         return new ResponseEntity<Object>(u.get(), HttpStatus.OK);
+    }
+
+    @PostMapping("/movies/{movie_id}/cinema/{cinema_id}/hall")
+    public ResponseEntity<?> generateOrder(@RequestBody OrderForm orderForm,
+                                           HttpSession session) throws NotLogin {
+        Object userId = session.getAttribute("userId");
+        if (userId == null) throw new NotLogin();
+        UserOrder order = userService.generateOrder((long) userId, orderForm);
+        OrderDTO orderDTO = new OrderDTO(order.getUser(),
+                order.getOrderDate(),
+                order.getTicketPrice(),
+                order.getTicketCount(),
+                order.getSeats());
+        return new ResponseEntity<>(orderDTO, HttpStatus.CREATED);
     }
 }

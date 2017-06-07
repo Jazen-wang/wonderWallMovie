@@ -12,6 +12,7 @@ public class Movie {
     @Column(name = "id")
     private long id;
     private String title;
+    private int price = 45;
 
     public Movie() {}
 
@@ -35,11 +36,20 @@ public class Movie {
         this.title = title;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

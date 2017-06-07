@@ -39,8 +39,15 @@ public class MovieServerApplication {
 						   SeatRepository seatRepository,
 						   MovieRepository movieRepository,
 						   ScreeningRepository screeningRepository,
-						   DoubanService doubanService) {
+						   DoubanService doubanService,
+						   UserRepository userRepository) {
 		return (String... evt) -> {
+			User user = new User();
+			user.setUsername("abc");
+			user.setPassword("abc");
+			userRepository.save(user);
+
+
 			City city1 = new City("广州", 1);
 			cityRepository.save(city1);
 			Cinema cinema1 = new Cinema("WonderWall", "小谷围", city1);

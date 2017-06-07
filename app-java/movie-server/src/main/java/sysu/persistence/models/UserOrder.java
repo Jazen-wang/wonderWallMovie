@@ -1,6 +1,10 @@
 package sysu.persistence.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +22,18 @@ public class UserOrder {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-    private LocalTime orderDate;
-    private double ticketPrice;
+    @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss")
+    private LocalDateTime orderDate;
+    private int ticketPrice;
     private int ticketCount;
     @OneToMany
     @JoinColumn(name = "seat_id")
-    private List<Seat> seats = new ArrayList<>();
+    private List<Seat> seats;
 
     public UserOrder() {}
 
-    public UserOrder(User user, LocalTime orderDate,
-                     double ticketPrice, int ticketCount,
+    public UserOrder(User user, LocalDateTime orderDate,
+                     int ticketPrice, int ticketCount,
                      List<Seat> seats) {
         this.user = user;
         this.orderDate = orderDate;
@@ -53,19 +58,19 @@ public class UserOrder {
         this.user = user;
     }
 
-    public LocalTime getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalTime orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
-    public double getTicketPrice() {
+    public int getTicketPrice() {
         return ticketPrice;
     }
 
-    public void setTicketPrice(double ticketPrice) {
+    public void setTicketPrice(int ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
 
