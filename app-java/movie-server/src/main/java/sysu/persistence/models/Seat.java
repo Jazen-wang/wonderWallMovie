@@ -8,15 +8,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "seat")
 public class Seat {
+    private static long gen = 0;
+
     @Id
-    @GeneratedValue
     @Column(name = "id")
-    private long id;
+    private long id = gen++;
     private int positionX;
     private int positionY;
     private boolean sold = false;
-    @ManyToOne
-    @JoinColumn(name = "screening_id", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "screening_id")
     private Screening screening;
 
 

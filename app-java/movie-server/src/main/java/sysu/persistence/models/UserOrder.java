@@ -9,8 +9,8 @@ import java.util.List;
  * Created by Shower on 2017/5/6 0006.
  */
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "user_order")
+public class UserOrder {
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -25,11 +25,11 @@ public class Order {
     @JoinColumn(name = "seat_id")
     private List<Seat> seats = new ArrayList<>();
 
-    public Order() {}
+    public UserOrder() {}
 
-    public Order(User user, LocalTime orderDate,
-                 double ticketPrice, int ticketCount,
-                 List<Seat> seats) {
+    public UserOrder(User user, LocalTime orderDate,
+                     double ticketPrice, int ticketCount,
+                     List<Seat> seats) {
         this.user = user;
         this.orderDate = orderDate;
         this.ticketPrice = ticketPrice;

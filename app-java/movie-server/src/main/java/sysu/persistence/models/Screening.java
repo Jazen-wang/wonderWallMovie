@@ -9,10 +9,11 @@ import java.time.LocalTime;
 @Entity
 @Table(name = "screening")
 public class Screening {
+    private static long gen = 0;
+
     @Id
-    @GeneratedValue
     @Column(name = "id")
-    private long id;
+    private long id = gen++;
     private LocalTime start;
     private LocalTime end;
     @OneToOne
