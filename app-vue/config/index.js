@@ -23,17 +23,17 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8080,
+    port: 8004,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     // 代理api到豆瓣
     proxyTable: {
       '/api': {
-        target: 'http://api.douban.com/v2',
+        target: 'http://returngirl.cn:8080/',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          // '^/api': ''
         }
       }
     },

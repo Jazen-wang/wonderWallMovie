@@ -7,7 +7,7 @@ export const actions = {
    * @param commit
    */
   getMovies ({commit, state}) {
-    utils.get('/movie/in_theaters', {city: state.city}).then(res => {
+    utils.get('/hotMovies', {city: state.city}).then(res => {
       commit('MOVIES_LIST', {list: res})
     })
   },
