@@ -2,6 +2,7 @@
  * @author 王镇佳<wzjfloor@163.com
  * Date: 17/04/17
  */
+export const HOT_MOVIES_LIST = 'HOT_MOVIES_LIST'
 export const MOVIES_LIST = 'MOVIES_LIST'
 export const MOVING_DETAIL = 'MOVING_DETAIL'
 export const MOVING_ID = 'MOVING_ID'

@@ -3,11 +3,20 @@ import { Utils } from '@/common/utils'
 let utils = new Utils()
 export const actions = {
   /**
+   * 获取正在热映电影列表
+   * @param commit
+   */
+  getHotMovies ({commit, state}) {
+    utils.get('/hotMovies', {city: state.city}).then(res => {
+      commit('HOT_MOVIES_LIST', {list: res})
+    })
+  },
+  /**
    * 获取电影列表
    * @param commit
    */
   getMovies ({commit, state}) {
-    utils.get('/hotMovies', {city: state.city}).then(res => {
+    utils.get('/movies', {city: state.city}).then(res => {
       commit('MOVIES_LIST', {list: res})
     })
   },
@@ -16,7 +25,7 @@ export const actions = {
    * @param commit
    */
   getMovieDetail ({commit, state}) {
-    utils.get(`/movie/subject/${state.id}`, {}).then(res => {
+    utils.get(`/movies/${state.id}`, {}).then(res => {
       // commit('DETAIL_LOADING', {loading: false})
       commit('MOVING_DETAIL', {movieDetail: res})
     })

@@ -3,6 +3,9 @@
  * @date 2017/04/17
  */
 export const getters = {
+  hotmoviesList: state => {
+    return state.hotmoviesList
+  },
   moviesList: state => {
     return state.moviesList
   },
