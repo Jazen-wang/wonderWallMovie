@@ -2,17 +2,22 @@
 <template lang="jade">
 #select-cinema
   movieDetail(:data="movieDetail")
-  #select-btn
-    el-button(type="danger" name="buy" @click="toSelectSeat(movieDetail, $event)") 选座购票
-  .cinema-detail 这里是好几个影院 test
+
+  SelectSeatDialog
+  .container
+    SelectTicketInfo
+    SessionList.session-list
 </template>
 
 <script>
-import movieDetail from '../components/movie-detail'
+import MovieDetail from '../components/movie-detail'
+import SelectTicketInfo from '../components/select-ticket-info'
+import SessionList from '../components/session-list'
+import SelectSeatDialog from '../components/select-seat'
 
 export default {
   components: {
-    movieDetail
+    MovieDetail, SelectTicketInfo, SessionList, SelectSeatDialog
   },
   data: function() {
     return {
@@ -29,10 +34,7 @@ export default {
     this.$store.dispatch('getMovieDetail');
   },
   methods: {
-    // 跳转到购买
-    toSelectSeat: function(movie, event) {
-      this.$router.push('/select/' + movie.id);
-    }
+
   }
 }
  

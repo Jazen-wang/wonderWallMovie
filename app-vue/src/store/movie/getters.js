@@ -4,15 +4,9 @@
  */
 export const getters = {
   moviesList: state => {
-    if (state.moviesList) {
-      for (let subject of state.moviesList.subjects) {
-        subject.rating.average = subject.rating.average / 2
-      }
-      return state.moviesList
-    }
+    return state.moviesList
   },
   movieDetail: state => {
-    state.movieDetail.rating.average = state.movieDetail.rating.average / 2
     return state.movieDetail
   },
   loginDialogVisible: state => {
@@ -20,5 +14,11 @@ export const getters = {
   },
   registerDialogVisible: state => {
     return state.registerDialogVisible
+  },
+  selectSeatDialogVisible: state => {
+    return state.selectSeatDialogVisible
+  },
+  selectedSession: state => {
+    return state.selectedSession
   }
 }

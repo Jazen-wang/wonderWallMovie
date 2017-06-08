@@ -44,5 +44,23 @@ export const actions = {
    */
   hideRegisterDialog ({commit, state}) {
     commit('REGISTER_DIALOG_VISIBLE', {visible: false})
+  },
+  /**
+   * 显示注册对话框
+   */
+  showSelectSeatDialog ({commit, state}, session) {
+    commit('SELECT_SEAT_DIALOG_VISIBLE', {visible: true, session: session})
+  },
+  /**
+   * 隐藏注册对话框
+   */
+  hideSelectSeatDialog ({commit, state}) {
+    commit('SELECT_SEAT_DIALOG_VISIBLE', {visible: false})
+  },
+  /**
+   * 登录
+   */
+  login({commit, state}, user) {
+    commit('LOGIN_USER', {user: user});
   }
 }
