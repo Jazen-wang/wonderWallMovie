@@ -23,6 +23,18 @@ export class Utils {
     })
   }
 
+  post (url, data) {
+    url = configPath + url;
+    return new Promise((resolve, reject) => {
+      vm.$http.post(url, data)
+        .then(res => {
+          resolve(response.body);
+        }, err => {
+          reject(err);
+      })
+    })
+  }
+
   // 获取滚动条当前的位置
   getScrollTop () {
     let scrollTop = 0

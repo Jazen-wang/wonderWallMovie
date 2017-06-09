@@ -34,7 +34,7 @@
           title: '首页',
           url: '/'
         }, {
-          title: '电影',
+          title: '经典影片',
           url: '/movies'
         }]
       }
