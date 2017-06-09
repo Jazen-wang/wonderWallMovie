@@ -10,14 +10,17 @@
       .film-info
         .title {{ subject.title }}
         .grade {{ (subject.rating.average * 2 == 0) ? "" : subject.rating.average * 2 }}
-    .buy(@click="toBuy(subject, $event)")
+    
+    .buy(@click="toBuy(subject, $event)" v-if="showBuy")
       | 购票
-
+    .buy(@click="toDetail(subject)" v-if="!showBuy")
+      | 查看详情
 </template>
 <script>
 export default{
   props: {
-    data: Array
+    data: Array,
+    showBuy: Boolean
   },
   data () {
     return {

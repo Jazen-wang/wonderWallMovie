@@ -26,7 +26,8 @@ export const actions = {
    */
   getMovieDetail ({commit, state}) {
     utils.get(`/movies/${state.id}`, {}).then(res => {
-      // commit('DETAIL_LOADING', {loading: false})
+      console.log(res);
+      debugger;
       commit('MOVING_DETAIL', {movieDetail: res})
     })
   },

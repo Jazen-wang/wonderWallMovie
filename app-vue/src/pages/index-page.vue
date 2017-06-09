@@ -5,7 +5,7 @@
       img(:src="item.src")
   .hot-showing
     .title 正在热映（可立即购票）
-    movielist(:data="moviesList")
+    movielist(:data="moviesList" v-bind:showBuy=1)
 
 </template>
 
@@ -26,7 +26,7 @@ export default {
     }
   },
   mounted () {
-    // 获取正在上映的列表
+    // 获取正在热映的列表
     this.$store.dispatch('getHotMovies')
   },
   components: {

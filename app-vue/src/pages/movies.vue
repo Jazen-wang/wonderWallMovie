@@ -4,7 +4,7 @@
       el-radio(:label="1") 按名字排序
       el-radio(:label="2") 按时间排序
       el-radio(:label="3") 按评价排序
-    movielist(:data="sortMovies")
+    movielist(:data="sortMovies" v-bind:showBuy=0)
 </template>
 
 <script>
