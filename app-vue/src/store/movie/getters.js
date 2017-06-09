@@ -20,5 +20,8 @@ export const getters = {
   },
   selectedSession: state => {
     return state.selectedSession
+  },
+  cinemaList: state => {
+    return state.cinemaList
   }
 }

@@ -29,5 +29,8 @@ export const mutations = {
   },
   [types.LOGIN_USER] (state, {user}) {
     state.user = user;
+  },
+  [types.CINEMA_LIST] (state, {cinemaList}) {
+    state.cinemaList = cinemaList;
   }
 }

@@ -16,9 +16,18 @@ export const actions = {
    * @param commit
    */
   getMovieDetail ({commit, state}) {
-    utils.get(`/movie/subject/${state.id}`, {}).then(res => {
+    utils.get(`/movies/${state.id}`, {}).then(res => {
       // commit('DETAIL_LOADING', {loading: false})
       commit('MOVING_DETAIL', {movieDetail: res})
+    })
+  },
+  /**
+   *获取电影院
+   * @param commit
+   */
+  getCinemaList ({commit, state}) {
+    utils.get(`/movies/${state.id}/cinema`, {}).then(res => {
+      commit('CINEMA_LIST', {cinemaList: res});
     })
   },
   /**

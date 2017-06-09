@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     movieDetail () {
-      return this.$store.getters.movieDetail
+      return this.$store.getters.movieDetail;
     }
   },
   mounted () {

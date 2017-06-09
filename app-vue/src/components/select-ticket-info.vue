@@ -11,7 +11,9 @@
     .cinema.info-box
       .label 影院：
       ul(@click="selectCinema")
-        li(v-for="cinema in allCinema", :class="{'selected': selectedCinema == cinema }") {{ cinema }}
+        li(v-for="cinema in cinemaList", :class="{'selected': selectedCinema == cinema.name }") {{ cinema.name }}
+
+    {{cinemaList}}
 </template>
 
 
@@ -21,7 +23,6 @@ export default {
     return {
       allDate: ["今天", "明天"],
       allArea: ["地铁附近", "番禺区"],
-      allCinema: ["UA影院", "飞扬影院"],
       selectedDate: "今天",
       selectedArea: "地铁附近",
       selectedCinema: "UA影院"
@@ -43,6 +44,14 @@ export default {
       let cinema = event.target.innerHTML;
       this.selectedCinema = cinema;
     }
+  },
+  computed: {
+    cinemaList: function () {
+      return this.$store.getters.cinemaList;
+    }
+  },
+  mounted: function () {
+    this.$store.dispatch('getCinemaList');
   }
 }
 </script>
