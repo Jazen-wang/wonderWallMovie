@@ -19,6 +19,7 @@ public class GlobalDefaultExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(Exception.class)
     public Message generalError(Exception e) {
+        System.out.println(e.getMessage());
         return new Message(e.getMessage());
     }
 

@@ -31,37 +31,39 @@ public class ApiController {
     @Autowired
     private InformationServiceImpl informationService;
 
-    @GetMapping("/hotMovies")
+    @GetMapping(value = "/hotMovies", produces = "application/json")
     public ResponseEntity<?> getLatestMovies() throws IOException {
         Optional<String> result = doubanService.getLatestMovies("广州");
         return new ResponseEntity<>(result.get(), HttpStatus.OK);
     }
 
-    @GetMapping("/movies/{id}")
+    @GetMapping(value = "/movies/{id}", produces = "application/json")
     public ResponseEntity<?> getMovieDetail(@PathVariable long id) throws IOException {
         Optional<String> detail = doubanService.getMovieDetail(id);
+//        System.out.println(detail.get());
+//        System.out.println(123);
         return new ResponseEntity<>(detail.get(), HttpStatus.OK);
     }
 
-    @GetMapping("/movies")
+    @GetMapping(value = "/movies", produces = "application/json")
     public ResponseEntity<?> getAllMovies() throws IOException {
         String allMovies = doubanService.getAllMovies();
         return new ResponseEntity<>(allMovies, HttpStatus.OK);
     }
 
-    @GetMapping("/movies/{id}/cinema")
+    @GetMapping(value = "/movies/{id}/cinema", produces = "application/json")
     public ResponseEntity<?> getCinemasHaveMovie(@PathVariable long id) throws IOException {
         Set<Cinema> cinemas = informationService.getCinemasHasMovie(id);
         return new ResponseEntity<>(cinemas, HttpStatus.OK);
     }
 
-    @GetMapping("/movies/{movie_id}/cinema/{cinema_id}")
+    @GetMapping(value = "/movies/{movie_id}/cinema/{cinema_id}", produces = "application/json")
     public ResponseEntity<?> getHallByMovieAndCinema(@PathVariable long movie_id, @PathVariable long cinema_id) throws IOException {
         List<Hall> halls = informationService.getHallByMovieAndCinema(movie_id, cinema_id);
         return new ResponseEntity<>(halls, HttpStatus.OK);
     }
 
-    @GetMapping("/movies/{movie_id}/cinema/{cinema_id}/hall/{hall_id}")
+    @GetMapping(value = "/movies/{movie_id}/cinema/{cinema_id}/hall/{hall_id}", produces = "application/json")
     public ResponseEntity<?> getSeats(@PathVariable long movie_id, @PathVariable long hall_id) throws IOException {
         List<Seat> seats = informationService.getSeats(hall_id, movie_id);
         return new ResponseEntity<Object>(seats, HttpStatus.OK);

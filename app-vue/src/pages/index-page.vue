@@ -4,8 +4,8 @@
     el-carousel-item(v-for="item in carousels" key="item.src")
       img(:src="item.src")
   .hot-showing
-    .title 正在热映
-    movielist(:data="moviesList")
+    .title 正在热映（可立即购票）
+    movielist(:data="moviesList" v-bind:showBuy=1)
 
 </template>
 
@@ -26,15 +26,15 @@ export default {
     }
   },
   mounted () {
-    // 获取正在上映的列表
-    this.$store.dispatch('getMovies')
+    // 获取正在热映的列表
+    this.$store.dispatch('getHotMovies')
   },
   components: {
     movielist
   },
   computed: {
     moviesList () {
-      return this.$store.getters.moviesList.subjects
+      return this.$store.getters.hotmoviesList.subjects
     }
   }
 

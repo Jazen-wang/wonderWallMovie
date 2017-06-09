@@ -4,6 +4,12 @@
  */
 import * as types from './types'
 export const mutations = {
+  [types.HOT_MOVIES_LIST] (state, {list}) {
+    for (let subject of list.subjects) {
+      subject.rating.average = subject.rating.average / 2
+    }
+    state.hotmoviesList = list
+  },
   [types.MOVIES_LIST] (state, {list}) {
     for (let subject of list.subjects) {
       subject.rating.average = subject.rating.average / 2
@@ -14,6 +20,7 @@ export const mutations = {
     state.id = id
   },
   [types.MOVING_DETAIL] (state, {movieDetail}) {
+    // console.log(movieDetail);
     movieDetail.rating.average = movieDetail.rating.average / 2
     state.movieDetail = movieDetail
   },
