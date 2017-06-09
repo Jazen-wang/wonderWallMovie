@@ -27,7 +27,6 @@ export const actions = {
   getMovieDetail ({commit, state}) {
     utils.get(`/movies/${state.id}`, {}).then(res => {
       console.log(res);
-      debugger;
       commit('MOVING_DETAIL', {movieDetail: res})
     })
   },

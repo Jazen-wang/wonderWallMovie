@@ -20,8 +20,7 @@ export const mutations = {
     state.id = id
   },
   [types.MOVING_DETAIL] (state, {movieDetail}) {
-    debugger;
-    console.log(movieDetail);
+    // console.log(movieDetail);
     movieDetail.rating.average = movieDetail.rating.average / 2
     state.movieDetail = movieDetail
   },
