@@ -40,6 +40,8 @@ public class ApiController {
     @GetMapping("/movies/{id}")
     public ResponseEntity<?> getMovieDetail(@PathVariable long id) throws IOException {
         Optional<String> detail = doubanService.getMovieDetail(id);
+//        System.out.println(detail.get());
+//        System.out.println(123);
         return new ResponseEntity<>(detail.get(), HttpStatus.OK);
     }
 

@@ -51,7 +51,7 @@ public class DoubanServiceImpl implements DoubanService {
             t = StringEscapeUtils.unescapeJava(t);
 //            System.out.println(t);
             //should check if t is valid
-            if (isValid(t)) movieDetailMap.put(movieId, t);
+            movieDetailMap.put(movieId, t);
         }
         return Optional.ofNullable(movieDetailMap.getOrDefault(movieId, null));
     }
