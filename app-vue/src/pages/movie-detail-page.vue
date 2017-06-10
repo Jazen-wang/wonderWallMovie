@@ -2,7 +2,7 @@
 <template lang="jade">
 #movie-detail-page
   movieDetail(:data="movieDetail")
-  #operation
+  #operation(v-show="showBuy")
     el-button(type="danger" name="buy" @click="toBuy(movieDetail, $event)") 立即购票
   .movieSum 
     .title 《{{movieDetail.title}}》电影介绍
@@ -32,10 +32,12 @@ export default {
   },
   data: function() {
     return {
+      showBuy: +this.$route.params['buy']
     }
   },
   computed: {
     movieDetail () {
+      this.showBuy = +this.$route.params['buy'];
       return this.$store.getters.movieDetail
     }
   },

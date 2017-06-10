@@ -27,7 +27,7 @@ var router = new Router({
       component: movies
     },
     {
-      path: '/movies/:id',
+      path: '/movies/:id/:buy',
       name: 'movieDetail',
       component: movieDetailPage
     },

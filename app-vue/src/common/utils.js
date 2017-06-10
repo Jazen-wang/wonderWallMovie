@@ -12,6 +12,7 @@ const configPath = '/api'
 window.configPath = configPath
 
 export class Utils {
+  
   get (url, data = {}) {
     url = configPath + url
     return new Promise((resolve, reject) => {
