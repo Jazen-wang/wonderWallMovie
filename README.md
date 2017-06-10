@@ -10,7 +10,7 @@ cd app-vue
 # 安装依赖
 npm install
 
-# 自动监听 localhost:8080
+# 自动监听 localhost:3004
 npm run dev 或者 npm start
 建议用cnpm进行安装
 sudo npm install -g cnpm
