@@ -31,7 +31,7 @@ export default {
   mounted () {
     let id = this.$route.params['id'];
     this.$store.commit('MOVING_ID', {id});
-    this.$store.dispatch('getMovieDetail');
+    this.$store.dispatch('getMovieDetail', id);
   },
   methods: {
 

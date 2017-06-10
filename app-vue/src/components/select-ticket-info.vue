@@ -4,16 +4,10 @@
       .label 日期：
       ul(@click="selectDate")
         li(v-for="date in allDate", :class="{'selected': selectedDate == date }") {{ date }}
-    .area.info-box
-      .label 区域：
-      ul(@click="selectArea")
-        li(v-for="area in allArea", :class="{'selected': selectedArea == area }") {{ area }}
     .cinema.info-box
       .label 影院：
       ul(@click="selectCinema")
-        li(v-for="cinema in cinemaList", :class="{'selected': selectedCinema == cinema.name }") {{ cinema.name }}
-
-    {{cinemaList}}
+        li(v-for="(cinema, index) in cinemaList", :class="{'selected': selectedCinemaIndex == index }", :cinema-key="index", :cinema-id='cinema.id') {{ cinema.name }}
 </template>
 
 
@@ -22,10 +16,8 @@ export default {
   data: function() {
     return {
       allDate: ["今天", "明天"],
-      allArea: ["地铁附近", "番禺区"],
       selectedDate: "今天",
-      selectedArea: "地铁附近",
-      selectedCinema: "UA影院"
+      selectedCinemaIndex: 0,
     }
   },
   methods: {
@@ -34,15 +26,15 @@ export default {
       let date = event.target.innerHTML;
       this.selectedDate = date;
     },
-    selectArea: function() {
-      if (event.target.tagName != "LI") return false;
-      let area = event.target.innerHTML;
-      this.selectedArea = area;
-    },
     selectCinema: function() {
       if (event.target.tagName != "LI") return false;
-      let cinema = event.target.innerHTML;
-      this.selectedCinema = cinema;
+      let cinemaIndex = event.target.getAttribute('cinema-key');
+      this.selectedCinemaIndex = +cinemaIndex;
+
+      let movieId = +this.$route.params['id'];
+      let cinemaId = +event.target.getAttribute('cinema-id');
+      this.$store.commit('SELECTED_CINEMA', {selectedCinema: cinemaId});
+      this.$store.dispatch('getSessionList', {movieId, cinemaId});
     }
   },
   computed: {
@@ -50,8 +42,20 @@ export default {
       return this.$store.getters.cinemaList;
     }
   },
+  watch: {
+    cinemaList: function () {
+      if (this.cinemaList.length != 0) {
+        let movieId = +this.$route.params['id'];
+        let cinemaId = +this.cinemaList[0].id;
+        this.$store.commit('SELECTED_CINEMA', {selectedCinema: cinemaId});
+        this.$store.dispatch('getSessionList', {movieId, cinemaId});
+      }
+    }
+  },
   mounted: function () {
-    this.$store.dispatch('getCinemaList');
+    let movieId = +this.$route.params['id'];
+    this.$store.dispatch('getCinemaList', movieId);
+    
   }
 }
 </script>

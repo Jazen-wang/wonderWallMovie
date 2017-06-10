@@ -5,7 +5,7 @@
       img(:src="item.src")
   .hot-showing
     .title 正在热映（可立即购票）
-    movielist(:data="moviesList" v-bind:showBuy=1)
+    movielist(:data="moviesList" v-bind:showBuy='true')
 
 </template>
 

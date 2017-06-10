@@ -4,7 +4,7 @@
   movieDetail(:data="movieDetail")
   #operation
     el-button(type="danger" name="buy" @click="toBuy(movieDetail, $event)") 立即购票
-  .movieSum 
+  .movieSum(v-if="movieDetail")
     .title 《{{movieDetail.title}}》电影介绍
     .summary 
       .subTitle 剧情简介
@@ -42,7 +42,7 @@ export default {
   mounted () {
     let id = this.$route.params['id'];
     this.$store.commit('MOVING_ID', {id});
-    this.$store.dispatch('getMovieDetail');
+    this.$store.dispatch('getMovieDetail', id);
   },
   methods: {
     // 跳转到购买页

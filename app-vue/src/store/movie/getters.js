@@ -25,6 +25,15 @@ export const getters = {
     return state.selectedSession
   },
   cinemaList: state => {
-    return state.cinemaList
+    return state.cinemaList;
+  },
+  sessionList: state => {
+    return state.sessionList;
+  },
+  seatInfo: state => {
+    return state.seatInfo;
+  },
+  selectedCinema: state => {
+    return state.selectedCinema
   }
 }

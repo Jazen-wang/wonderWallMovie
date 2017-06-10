@@ -24,8 +24,8 @@ export const actions = {
    *获取电影详情
    * @param commit
    */
-  getMovieDetail ({commit, state}) {
-    utils.get(`/movies/${state.id}`, {}).then(res => {
+  getMovieDetail ({commit, state}, id) {
+    utils.get(`/movies/${id}`, {}).then(res => {
       commit('MOVING_DETAIL', {movieDetail: res})
     })
   },
@@ -33,9 +33,21 @@ export const actions = {
    *获取电影院
    * @param commit
    */
-  getCinemaList ({commit, state}) {
-    utils.get(`/movies/${state.id}/cinema`, {}).then(res => {
+  getCinemaList ({commit, state}, id) {
+    utils.get(`/movies/${id}/cinema`, {}).then(res => {
       commit('CINEMA_LIST', {cinemaList: res});
+    })
+  },
+
+  getSessionList ({commit, state}, {movieId, cinemaId}) {
+    utils.get(`/movies/${movieId}/cinema/${cinemaId}`).then(res => {
+      commit('SESSION_LIST', {sessionList: res});
+    })
+  },
+
+  getSeatInfo({commit, state}, {movieId, hallId}) {
+    utils.get(`/movies/${movieId}/cinema/${state.selectedCinema}/hall/${hallId}`).then(res => {
+      commit('SEAT_INFO', {seatInfo: res});
     })
   },
   /**

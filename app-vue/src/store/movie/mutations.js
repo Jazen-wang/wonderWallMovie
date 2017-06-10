@@ -20,7 +20,6 @@ export const mutations = {
     state.id = id
   },
   [types.MOVING_DETAIL] (state, {movieDetail}) {
-    // console.log(movieDetail);
     movieDetail.rating.average = movieDetail.rating.average / 2
     state.movieDetail = movieDetail
   },
@@ -39,5 +38,17 @@ export const mutations = {
   },
   [types.CINEMA_LIST] (state, {cinemaList}) {
     state.cinemaList = cinemaList;
+  },
+  [types.SESSION_LIST] (state, {sessionList}) {
+    state.sessionList = sessionList;
+  },
+  [types.SEAT_INFO] (state, {seatInfo}) {
+    state.seatInfo = seatInfo;
+  },
+  [types.SELECTED_CINEMA] (state, {selectedCinema}) {
+    state.selectedCinema = selectedCinema;
+  },
+  [types.SELECTED_SESSION] (state, {selectedSession}) {
+    state.selectedSession = selectedSession;
   }
 }

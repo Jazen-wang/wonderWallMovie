@@ -16,6 +16,7 @@ export class Utils {
     url = configPath + url
     return new Promise((resolve, reject) => {
       vm.$http.get(url, {params: data, credentials: true}).then((response) => {
+        console.log(response);
         resolve(response.body)
       }, function () {
         console.log('接口异常')

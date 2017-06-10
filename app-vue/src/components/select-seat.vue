@@ -2,7 +2,6 @@
 el-dialog(title="选座", v-model="visible", @close="cancel", size="small", :lock-scroll="false")
   #select-seat
     .session-info
-      span 时间：{{ selectedSession.time }}
       span 语言：{{ selectedSession.language }}
       span 放映厅：{{ selectedSession.address }}
       span 单张票价：{{ selectedSession.price }}
@@ -14,61 +13,61 @@ el-dialog(title="选座", v-model="visible", @close="cancel", size="small", :loc
       img(src="../assets/seat-selected.svg", alt="已选")
       span 已选座位
     .select-group
-      .row(v-for="(row, rowIndex) in seat")
-        .col(v-for="(item, colIndex) in row", @click="select(item, rowIndex, colIndex)")
-          .seat.selected(v-if="item.state == 'selected'")
-          .seat.occupied(v-else-if="item.state == 'occupied'")
-          .seat.selectable(v-else-if="item.state == 'selectable'")
+      .row(v-for="row in seat")
+        .col(v-for="item in row", @click="select(item)" v-if="item")
+          .seat.selected(v-if="item.selected == true ")
+          .seat.occupied(v-else-if="item.sold == true")
+          .seat.selectable(v-else-if="item.selected == false && item.sold == false")
     div.footer
       div 总价：
         span.total-price {{ totalPrice }} ¥
           
-      el-button.buy-btn(type="success", @click="buy") 下单
+      el-button.buy-btn(type="success", @click="buy", :loading="loading") 下单
 </template>
 
 
 <script>
 
-var initSeat = [
-  [
-    {seatNum: 0, state: 'occupied'},
-    {seatNum: 1, state: 'selectable'},
-    {seatNum: 2, state: 'selectable'},
-    {seatNum: 3, state: 'selectable'},
-    {seatNum: 4, state: 'occupied'}
-  ],
-  [
-    {seatNum: 0, state: 'occupied'},
-    {seatNum: 1, state: 'selectable'},
-    {seatNum: 2, state: 'selectable'},
-    {seatNum: 3, state: 'selectable'},
-    {seatNum: 4, state: 'occupied'}
-  ]
-]
-
 export default {
   data: function() {
     return {
-      seat: initSeat,
-      selectCount: 0,
+      selectSeats: [],
+      loading: false,
     }
   },
   methods: {
-    select: function(item, row, col) {
-      if (item.state == "occupied") return false;
-      if (item.state == "selected") {
-        item.state = 'selectable';
-        this.selectCount -= 1;
-      } else if (item.state == "selectable") {
-        item.state = 'selected';
-        this.selectCount += 1;
+    select: function(item) {
+      if (item.sold == true) return false;
+      if (item.selected == true) {
+        item.selected = false;
+        let pos = this.selectSeats.indexOf(item);
+        this.selectSeats.splice(pos, 1);
+      } else if (item.selected == false) {
+        item.selected = true;
+        this.selectSeats.push(item);
       }
     },
     cancel: function() {
       this.$store.dispatch('hideSelectSeatDialog');
     },
     buy: function() {
-
+      let order = {
+        seats: this.seat,
+        orderDate: new Date(),
+        ticketPrice: this.selectedSession.price
+      }
+      this.loading = true;
+      this.$http.post(`http://returngirl:8080/api/movies/${this.$route.params['id']}/cinema/${this.$store.getters.selectedCinema}/hall`, order)
+        .then(res => {
+          console.log(res);
+          this.loading = false,
+          this.$notify({
+            title: '成功',
+            message: '购票成功',
+            type: 'success'
+          });
+          this.$store.dispatch('hideSelectSeatDialog');
+        })
     }
   },
   computed: {
@@ -88,7 +87,26 @@ export default {
       }
     },
     totalPrice () {
-      return this.selectedSession.price * this.selectCount;
+      return this.selectedSession.price * this.selectSeats.length;
+    },
+    seat () {
+
+      let seats = [];
+      if (this.$store.getters.seatInfo) {
+        seats = new Array(50);
+        for (let i = 0; i < seats.length; ++i) {
+          seats[i] = new Array(50);
+        }
+        this.$store.getters.seatInfo.forEach((seat, index) => {
+          seats[seat.positionX][seat.positionY] = {
+            id: seat.id,
+            sold: seat.sold,
+            selected: false
+          }
+        })
+      }
+      
+      return seats;
     }
   },
 
