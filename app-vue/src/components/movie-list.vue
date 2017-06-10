@@ -33,13 +33,13 @@ export default{
       this.$store.commit('MOVING_ID', {id: movie.id});
       this.$store.dispatch('getMovieDetail');
       // 跳转
-      if (showBuy) this.$router.push('/movies/' + movie.id + '/1');
-      else this.$router.push('/movies/' + movie.id + '/0');
+      if (showBuy) this.$router.push('/movies/' + movie.id + '/buy/1');
+      else this.$router.push('/movies/' + movie.id + '/buy/0');
 
     },
     // 跳转到购买页
     toBuy: function(movie, event) {
-      this.$router.push('/movies/' + movie.id + '/1');
+      this.$router.push('/movies/' + movie.id + '/buy/1');
       event.stopPropagation();
     }
   },
