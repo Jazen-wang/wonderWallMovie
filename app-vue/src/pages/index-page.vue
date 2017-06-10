@@ -15,8 +15,7 @@ import movielist from '@/components/movie-list'
 
 let icarousels = [
   {src: require('../assets/movie-1.jpg')},
-  {src: require('../assets/movie-2.jpg')},
-  {src: require('../assets/movie-3.jpg')},
+  {src: require('../assets/movie-2.jpg')}
 ]
  
 export default {
