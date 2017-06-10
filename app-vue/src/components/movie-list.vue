@@ -4,7 +4,7 @@
 
 .moviesList-container
   el-card.movie-card(v-for='(subject, index) in data' key="index")
-    .firm-pic(@click="toDetail(subject)")
+    .firm-pic(@click="toDetail(subject, showBuy)")
       .firm-overlay
       img.movieImg(:src='subject.images.large', alt='')
       .film-info
@@ -13,7 +13,7 @@
     
     .buy(@click="toBuy(subject, $event)" v-if="showBuy")
       | 购票
-    .buy(@click="toDetail(subject)" v-if="!showBuy")
+    .buy(@click="toDetail(subject, showBuy)" v-if="!showBuy")
       | 查看详情
 </template>
 <script>
@@ -28,17 +28,18 @@ export default{
   },
   methods: {
     // 跳转到电影详情
-    toDetail: function(movie) {
+    toDetail: function(movie, showBuy) {
       // 获取详情
       this.$store.commit('MOVING_ID', {id: movie.id});
       this.$store.dispatch('getMovieDetail');
       // 跳转
-      this.$router.push('/movies/' + movie.id);
+      if (showBuy) this.$router.push('/movies/' + movie.id + '/1');
+      else this.$router.push('/movies/' + movie.id + '/0');
 
     },
     // 跳转到购买页
     toBuy: function(movie, event) {
-      this.$router.push('/movies/' + movie.id + '/cinema');
+      this.$router.push('/movies/' + movie.id + '/1');
       event.stopPropagation();
     }
   },

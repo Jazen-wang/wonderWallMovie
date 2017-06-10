@@ -29,6 +29,13 @@ module.exports = {
     assetsPublicPath: '/',
     // 代理api到豆瓣
     proxyTable: {
+      '/api/detail/movie/**': {
+        target: 'http://api.douban.com/v2/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/detail': ''
+        }
+      },
       '/api': {
         target: 'http://returngirl.cn:8080/',
         changeOrigin: true,
