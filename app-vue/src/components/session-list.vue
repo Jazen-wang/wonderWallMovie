@@ -35,7 +35,7 @@
     methods: {
       showSelectSeatDialog(index, row) {
         let movieId = this.$route.params['id'];
-        this.$store.dispatch('getSeatInfo', {movieId, hallId: row.address});
+        this.$store.dispatch('getSeatInfo', {movieId, hallId: row.id});
         this.$store.commit('SELECTED_SESSION', {selectedSession : row});
         this.$store.dispatch('showSelectSeatDialog', row);
       },
