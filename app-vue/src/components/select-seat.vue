@@ -57,17 +57,27 @@ export default {
         ticketPrice: this.selectedSession.price
       }
       this.loading = true;
-      this.$http.post(`http://returngirl:8080/api/movies/${this.$route.params['id']}/cinema/${this.$store.getters.selectedCinema}/hall`, order)
-        .then(res => {
-          console.log(res);
-          this.loading = false,
+      
+      this.$http.post(`/api/movies/${this.$route.params['id']}/cinema/${this.$store.getters.selectedCinema}/hall`, order, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+          this.loading = false;
           this.$notify({
             title: '成功',
             message: '购票成功',
             type: 'success'
           });
           this.$store.dispatch('hideSelectSeatDialog');
-        })
+        }).catch(res => {
+          this.loading = false;
+          this.$notify({
+            title: '失败',
+            message: '购票失败,请检查你的网络配置',
+            type: 'error'
+          });
+        });
     }
   },
   computed: {
