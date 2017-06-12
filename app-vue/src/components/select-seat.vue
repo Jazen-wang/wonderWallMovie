@@ -21,7 +21,7 @@ el-dialog(title="选座", v-model="visible", @close="cancel", size="small", :loc
     div.footer
       div 总价：
         span.total-price {{ totalPrice }} ¥
-          
+
       el-button.buy-btn(type="success", @click="buy", :loading="loading") 下单
 </template>
 
@@ -65,18 +65,26 @@ export default {
         ticketPrice: this.selectedSession.price
       }
       this.loading = true;
-      this.$store.dispatch('postOrder', {movieId: this.$route.params['id'], order});
-      // this.$http.post(`http://returngirl:8080/api/movies/${this.$route.params['id']}/cinema/${this.$store.getters.selectedCinema}/hall`, order)
-      //   .then(res => {
-      //     console.log(res);
-      //     this.loading = false,
-      //     this.$notify({
-      //       title: '成功',
-      //       message: '购票成功',
-      //       type: 'success'
-      //     });
-      //     this.$store.dispatch('hideSelectSeatDialog');
-      //   })
+      this.$http.post(`/api/movies/${this.$route.params['id']}/cinema/${this.$store.getters.selectedCinema}/hall`, order, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+          this.loading = false;
+          this.$notify({
+            title: '成功',
+            message: '购票成功',
+            type: 'success'
+          });
+          this.$store.dispatch('hideSelectSeatDialog');
+        }).catch(res => {
+          this.loading = false;
+          this.$notify({
+            title: '失败',
+            message: '购票失败,请检查你的网络配置',
+            type: 'error'
+          });
+        });
     }
   },
   computed: {
@@ -116,7 +124,7 @@ export default {
           }
         })
       }
-      
+
       return seats;
     }
   },
