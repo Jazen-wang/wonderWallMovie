@@ -45,9 +45,9 @@ mvn spring-boot:run
 
 ## 文档
 
-- [Web接口][api]
-- [UI规范][ui_spec]
-- [代码规范][code_style]
+- [Web接口](./doc/api)
+- [UI规范](./doc/ui_spec)
+- [代码规范](./doc/code_style)
 
 ## 迭代版本 #1
 
