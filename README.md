@@ -5,8 +5,8 @@
 ## 文档
 
 - [Web接口](https://gitlab.com/returnGirl/vue-movie/blob/dev/doc/api.md)
-- [UI规范](https://gitlab.com/returnGirl/vue-movie/blob/dev/doc/ui_spec)
-- [代码规范](https://gitlab.com/returnGirl/vue-movie/blob/dev/doc/code_style)
+- [UI规范](https://gitlab.com/returnGirl/vue-movie/blob/dev/doc/ui_spec.md)
+- [代码规范](https://gitlab.com/returnGirl/vue-movie/blob/dev/doc/code_style.md)
 
 ## 前端开发
 
