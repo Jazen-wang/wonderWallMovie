@@ -24,6 +24,7 @@ const state = {
   selectedCinema: null, // 选择影院
   selectedSession: null, // 选择场次
   selectedSeat: [], // 选择座位
+  orderResult: null, // 下单结果
 }
 
 export default {

@@ -29,6 +29,12 @@ export const actions = {
       commit('MOVING_DETAIL', {movieDetail: res})
     })
   },
+
+  postOrder ({commit, state}, {movieId, order}) {
+    utils.post(`/movies/${movieId}/cinema/${state.selectedCinema}/hall`, order).then(res => {
+      console.log(res);
+    });
+  },
   /**
    *获取电影院
    * @param commit

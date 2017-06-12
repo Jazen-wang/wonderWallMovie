@@ -51,23 +51,32 @@ export default {
       this.$store.dispatch('hideSelectSeatDialog');
     },
     buy: function() {
+      let seats = this.seat.map(item => {
+        return {
+          id: item.id,
+          sold: item.sold,
+          positionX: item.positionX,
+          positionY: item.positionY,
+        }
+      });
       let order = {
-        seats: this.seat,
+        seats: seats,
         orderDate: new Date(),
         ticketPrice: this.selectedSession.price
       }
       this.loading = true;
-      this.$http.post(`http://returngirl:8080/api/movies/${this.$route.params['id']}/cinema/${this.$store.getters.selectedCinema}/hall`, order)
-        .then(res => {
-          console.log(res);
-          this.loading = false,
-          this.$notify({
-            title: '成功',
-            message: '购票成功',
-            type: 'success'
-          });
-          this.$store.dispatch('hideSelectSeatDialog');
-        })
+      this.$store.dispatch('postOrder', {movieId: this.$route.params['id'], order});
+      // this.$http.post(`http://returngirl:8080/api/movies/${this.$route.params['id']}/cinema/${this.$store.getters.selectedCinema}/hall`, order)
+      //   .then(res => {
+      //     console.log(res);
+      //     this.loading = false,
+      //     this.$notify({
+      //       title: '成功',
+      //       message: '购票成功',
+      //       type: 'success'
+      //     });
+      //     this.$store.dispatch('hideSelectSeatDialog');
+      //   })
     }
   },
   computed: {
@@ -101,6 +110,8 @@ export default {
           seats[seat.positionX][seat.positionY] = {
             id: seat.id,
             sold: seat.sold,
+            positionX: seat.positionX,
+            positionY: seat.positionY,
             selected: false
           }
         })
