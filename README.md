@@ -2,6 +2,12 @@
 
 > 一个购票网站平台 -- By sysu团队
 
+## 文档
+
+- [Web接口](https://gitlab.com/returnGirl/vue-movie/blob/dev/doc/api.md)
+- [UI规范](https://gitlab.com/returnGirl/vue-movie/blob/dev/doc/ui_spec)
+- [代码规范](https://gitlab.com/returnGirl/vue-movie/blob/dev/doc/code_style)
+
 ## 前端开发
 
 ``` bash
@@ -43,11 +49,7 @@ mvn spring-boot:run
 + sysu - 白吟霜  
 + sysu - 刘阳  
 
-## 文档
 
-- [Web接口](api)
-- [UI规范](ui_spec)
-- [代码规范](code_style)
 
 ## 迭代版本 #1
 
